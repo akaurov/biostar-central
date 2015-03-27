@@ -6,7 +6,7 @@ import os, random
 from django.core.cache import cache
 from biostar.apps.messages.models import Message
 from biostar.apps.users.models import User
-from biostar.apps.posts.models import Post, Vote, Tag, Subscription, ReplyToken
+from biostar.apps.posts.models import Post, Vote, Tag, Subscription, ReplyToken, RelatedPosts
 from biostar.apps.posts.views import NewPost, NewAnswer
 from biostar.apps.badges.models import Badge, Award
 from biostar.apps.posts.auth import post_permissions
@@ -442,6 +442,15 @@ class PostDetails(DetailView):
     def get_context_data(self, **kwargs):
         context = super(PostDetails, self).get_context_data(**kwargs)
         context['request'] = self.request
+
+        # Pass related questions into template. TODO: Add backward relation.
+        if self.get_object().type == 0:
+            related_questions = RelatedPosts.objects.filter(post=self.get_object())
+            context['easier_questions'] = [post for post in related_questions if post.type == 0]
+            context['harder_questions'] = [post for post in related_questions if post.type == 1]
+            context['common_questions'] = [post for post in related_questions if post.type == 2]
+            context['special_questions'] = [post for post in related_questions if post.type == 3]
+
         return context
 
 

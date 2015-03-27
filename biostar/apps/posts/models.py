@@ -201,6 +201,9 @@ class Post(models.Model):
     # This will maintain parent/child replationships between posts.
     parent = models.ForeignKey('self', null=True, blank=True, related_name='children')
 
+    # This will maintain related posts.
+    related = models.ManyToManyField('self', symmetrical=False, through='RelatedPosts', null=True, blank=True, related_name='similar')
+
     # This is the HTML that the user enters.
     content = models.TextField(default='')
 
@@ -387,6 +390,27 @@ class Post(models.Model):
             instance.save()
 
 
+class RelatedPosts(models.Model):
+    """
+    Handle relations between Post with type equal Question
+    """
+
+    # Relations types.
+    EASIER, HARDER, COMMON, SPECIAL = range(4)
+
+    RELATION_TYPES = [
+        (EASIER, "Easier"), (HARDER, "Harder"),
+        (COMMON, "Common"), (SPECIAL, "Special"),
+    ]
+
+    post = models.ForeignKey(Post, limit_choices_to={'type': 0}, related_name='related_post')
+    similar_post = models.ForeignKey(Post, limit_choices_to={'type': 0}, related_name='similar_post')
+    type = models.IntegerField(choices=RELATION_TYPES)
+
+    class Meta:
+        unique_together = ("post", "similar_post")
+
+
 class ReplyToken(models.Model):
     """
     Connects a user and a post to a unique token. Sending back the token identifies
@@ -445,6 +469,15 @@ class EmailEntry(models.Model):
     status = models.IntegerField(choices=((DRAFT, "Draft"), (PUBLISHED, "Published")))
 
 
+class PostRelationsAdmin(admin.TabularInline):
+    model = RelatedPosts
+    fk_name = "post"
+
+class PostRelations2Admin(admin.TabularInline):
+    model = RelatedPosts
+    fk_name = "similar_post"
+
+
 class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'type', 'author')
     fieldsets = (
@@ -453,6 +486,7 @@ class PostAdmin(admin.ModelAdmin):
         ('Content', {'fields': ('content', )}),
     )
     search_fields = ('title', 'author__name')
+    inlines = [PostRelationsAdmin, PostRelations2Admin]
 
 admin.site.register(Post, PostAdmin)
 

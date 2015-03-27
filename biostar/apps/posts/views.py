@@ -1,7 +1,7 @@
 # Create your views here.
 from django.shortcuts import render_to_response
 from django.views.generic import TemplateView, DetailView, ListView, FormView, UpdateView
-from .models import Post
+from .models import Post, RelatedPosts
 from django import forms
 from django.core.urlresolvers import reverse
 from crispy_forms.helper import FormHelper
@@ -19,6 +19,8 @@ from biostar.const import OrderedDict
 from django.core.exceptions import ValidationError
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
+from django.forms.formsets import formset_factory
+from django.forms.models import inlineformset_factory
 import logging
 
 logger = logging.getLogger(__name__)
@@ -82,6 +84,7 @@ class LongForm(forms.Form):
         super(LongForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_class = "post-form"
+        self.helper.form_tag = False
         self.helper.layout = Layout(
             Fieldset(
                 'Post Form',
@@ -90,10 +93,23 @@ class LongForm(forms.Form):
                 Field('tag_val'),
                 Field('content'),
             ),
-            ButtonHolder(
-                Submit('submit', 'Submit')
-            )
         )
+
+
+class RelatedForm(forms.ModelForm):
+    model = RelatedPosts
+    fields = ('similar_post', 'type')
+
+    def __init__(self, *args, **kwargs):
+        super(RelatedForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+
+
+class RelatedFormSetHelper(FormHelper):
+    def __init__(self, *args, **kwargs):
+        super(RelatedFormSetHelper, self).__init__(*args, **kwargs)
+        self.form_tag = False
 
 
 class ShortForm(forms.Form):
@@ -104,14 +120,12 @@ class ShortForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(ShortForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
+        self.helper.form_tag = False
         self.helper.layout = Layout(
             Fieldset(
                 'Post',
                 'content',
             ),
-            ButtonHolder(
-                Submit('submit', 'Submit')
-            )
         )
 
 
@@ -289,6 +303,13 @@ class EditPost(LoginRequiredMixin, FormView):
         post = Post.objects.get(pk=pk)
         post = auth.post_permissions(request=request, post=post)
 
+        formset = None
+        helper = None
+        if post.type == 0:
+            RelatedFormSet = inlineformset_factory(Post, RelatedPosts, RelatedForm, fk_name="post")
+            formset = RelatedFormSet(instance=post)
+            helper = RelatedFormSetHelper()
+
         # Check and exit if not a valid edit.
         if not post.is_editable:
             messages.error(request, "This user may not modify the post")
@@ -300,7 +321,7 @@ class EditPost(LoginRequiredMixin, FormView):
         pre = 'class="preformatted"' in post.content
         form_class = LongForm if post.is_toplevel else ShortForm
         form = form_class(initial=initial)
-        return render(request, self.template_name, {'form': form, 'pre': pre})
+        return render(request, self.template_name, {'form': form, 'pre': pre, 'formset': formset, 'helper': helper})
 
     def post(self, request, *args, **kwargs):
 
@@ -339,6 +360,16 @@ class EditPost(LoginRequiredMixin, FormView):
 
         # This is needed to validate some fields.
         post.save()
+
+        # Save related formset for questions
+        formset = None
+        if post.type == 0:
+            RelatedFormSet = inlineformset_factory(Post, RelatedPosts, fk_name="post")
+            formset = RelatedFormSet(request.POST, instance=post)
+
+        if post.type == 0:
+            if formset.is_valid():
+                formset.save()
 
         if post.is_toplevel:
             post.add_tags(post.tag_val)

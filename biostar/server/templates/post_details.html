@@ -111,6 +111,56 @@
                 </ul>
             {% endcache %}
         </div>
+
+        {% if easier_questions %}
+            <div class="col-xs-12 col-md-3 sidebar">
+                <h4>Easier questions &bull;</h4>
+                <ul class="more-like-this">
+                    {% for rel_post in easier_questions %}
+                        <li>
+                            <a href="{{ rel_post.similar_post.get_absolute_url }}">{{ rel_post.similar_post.title }} </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        {% if harder_questions %}
+            <div class="col-xs-12 col-md-3 sidebar">
+                <h4>Harder questions &bull;</h4>
+                <ul class="more-like-this">
+                    {% for rel_post in harder_questions %}
+                        <li>
+                            <a href="{{ rel_post.similar_post.get_absolute_url }}">{{ rel_post.similar_post.title }} </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        {% if common_questions %}
+            <div class="col-xs-12 col-md-3 sidebar">
+                <h4>Common questions &bull;</h4>
+                <ul class="more-like-this">
+                    {% for rel_post in common_questions %}
+                        <li>
+                            <a href="{{ rel_post.similar_post.get_absolute_url }}">{{ rel_post.similar_post.title }} </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        {% if special_questions %}
+            <div class="col-xs-12 col-md-3 sidebar">
+                <h4>Special questions &bull;</h4>
+                <ul class="more-like-this">
+                    {% for rel_post in special_questions %}
+                        <li>
+                            <a href="{{ rel_post.similar_post.get_absolute_url }}">{{ rel_post.similar_post.title }} </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
     </div>
     {% if user.is_authenticated %}
         <script src="{{ STATIC_URL }}ckeditor/ckeditor.js"></script>
