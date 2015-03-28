@@ -294,6 +294,7 @@ INSTALLED_APPS = [
     'djcelery',
     'kombu.transport.django',
     'south',
+    'django_select2',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
@@ -494,3 +495,5 @@ EMAIL_HOST = get_env("EMAIL_HOST")
 EMAIL_PORT = get_env("EMAIL_PORT", func=int)
 EMAIL_HOST_USER = get_env("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = get_env("EMAIL_HOST_PASSWORD")
+
+AUTO_RENDER_SELECT2_STATICS = False

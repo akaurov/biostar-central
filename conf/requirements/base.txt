@@ -19,6 +19,8 @@ pyzmail
 chardet
 feedparser
 
+Django-Select2==4.2.2
+
 #django-secure
 #python-dateutil
 #django-registration

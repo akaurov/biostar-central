@@ -21,6 +21,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.forms.formsets import formset_factory
 from django.forms.models import inlineformset_factory
+from django_select2 import AutoModelSelect2Field, AutoHeavySelect2Widget, AutoModelSelect2TagField
 import logging
 
 logger = logging.getLogger(__name__)
@@ -96,8 +97,24 @@ class LongForm(forms.Form):
         )
 
 
+class RelatedPostChoices(AutoModelSelect2Field):
+    queryset = Post.objects.filter(type=0)
+    search_fields = ['title__icontains', ]
+
+
 class RelatedForm(forms.ModelForm):
     model = RelatedPosts
+
+    similar_post = RelatedPostChoices(
+        label=u'Post',
+        widget=AutoHeavySelect2Widget(
+            select2_options={
+                'width': '30em',
+                'placeholder': u'Post',
+                'minimumInputLength': 1,
+            }
+        )
+    )
     fields = ('similar_post', 'type')
 
     def __init__(self, *args, **kwargs):
@@ -344,9 +361,18 @@ class EditPost(LoginRequiredMixin, FormView):
         form_class = LongForm if post.is_toplevel else ShortForm
 
         form = form_class(request.POST)
+
+        # Related formset
+        formset = None
+        helper = None
+        if post.type == 0:
+            RelatedFormSet = inlineformset_factory(Post, RelatedPosts, RelatedForm, fk_name="post")
+            formset = RelatedFormSet(request.POST, instance=post)
+            helper = RelatedFormSetHelper()
+
         if not form.is_valid():
             # Invalid form submission.
-            return render(request, self.template_name, {'form': form})
+            return render(request, self.template_name, {'form': form, 'formset': formset, 'helper': helper})
 
         # Valid forms start here.
         data = form.cleaned_data
@@ -362,14 +388,11 @@ class EditPost(LoginRequiredMixin, FormView):
         post.save()
 
         # Save related formset for questions
-        formset = None
-        if post.type == 0:
-            RelatedFormSet = inlineformset_factory(Post, RelatedPosts, fk_name="post")
-            formset = RelatedFormSet(request.POST, instance=post)
-
         if post.type == 0:
             if formset.is_valid():
                 formset.save()
+            else:
+                return render(request, self.template_name, {'form': form, 'formset': formset, 'helper': helper})
 
         if post.is_toplevel:
             post.add_tags(post.tag_val)

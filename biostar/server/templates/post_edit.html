@@ -2,6 +2,7 @@
 {% load server_tags %}
 {% load humanize %}
 {% load crispy_forms_tags %}
+{% load django_select2_tags %}
 
 {% block page_title %}
     Update Post
@@ -9,12 +10,26 @@
 
 
 {% block extras %}
-    {# Extra header may be injected here #}
-    <script src="{{ STATIC_URL }}lib/jquery.formset.js" type="text/javascript"></script>
+    {% import_django_select2_js_css %}
     <script type="text/javascript">
-       $(function() {
-        $('.related_post').formset();
-    })
+        // Clone related formset form
+        function cloneMore(selector, type) {
+            var newElement = $(selector).clone(true);
+            var total = $('#id_' + type + '-TOTAL_FORMS').val();
+            reqExp = new RegExp('-' + (total-1) + '-', "g");
+            newElement.find('.select2-container').remove();
+            newElement.find('input').val('');
+            newElement[0].innerHTML = newElement[0].innerHTML.replace(reqExp,'-' + total + '-');
+            total++;
+            $('#id_' + type + '-TOTAL_FORMS').val(total);
+            $(selector).after(newElement[0]);
+        }
+
+        $(function() {
+            $('#add_more').click(function() {
+                cloneMore('.related_post:last', 'related_post');
+            });
+        })
     </script>
 {% endblock %}
 {% block content %}
@@ -30,6 +45,7 @@
                 {% endfor %}
                 {{ formset.management_form }}
                 <!--{% crispy formset helper %}-->
+                <a href="javascript:void(0);" id="add_more">add related</a>
             {% endif %}
             <div class="buttonHolder"><input type="submit" name="submit" value="Submit" class="btn btn-primary" id="submit-id-submit"> </div>
                 </form>

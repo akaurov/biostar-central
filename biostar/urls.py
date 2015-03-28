@@ -122,6 +122,9 @@ urlpatterns = patterns('',
      # Local robots.txt.
     url(r'^robots\.txt$', TemplateView.as_view(template_name="robots.txt", content_type='text/plain'), name='robots'),
 
+    # Url for django-select2 ajax queries(ex. related posts)
+    url(r'^select2/', include('django_select2.urls')),
+
 )
 
 # Adding the sitemap.
