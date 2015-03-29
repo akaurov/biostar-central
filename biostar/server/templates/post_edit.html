@@ -26,6 +26,16 @@
         }
 
         $(function() {
+            if ($('#id_post_type').val() == 0) {
+                $('.related_posts').show()
+            }
+            $('#id_post_type').change(function(){
+            if ($(this).val() == 0 ) {
+                $('.related_posts').show()
+            } else {
+                $('.related_posts').hide()
+            }
+        });
             $('#add_more').click(function() {
                 cloneMore('.related_post:last', 'related_post');
             });
@@ -40,12 +50,13 @@
             <form method="post" class="post-form">
             {% crispy form %}
             {% if formset %}
-                {% for form in formset.forms %}
-                   <div class="related_post">{{ form }}</div>
-                {% endfor %}
-                {{ formset.management_form }}
-                <!--{% crispy formset helper %}-->
-                <a href="javascript:void(0);" id="add_more">add related</a>
+                <div class="related_posts" style="display:none">
+                    {% for form in formset.forms %}
+                       <div class="related_post">{{ form }}</div>
+                    {% endfor %}
+                    {{ formset.management_form }}
+                    <a href="javascript:void(0);" id="add_more">add related</a>
+                </div>
             {% endif %}
             <div class="buttonHolder"><input type="submit" name="submit" value="Submit" class="btn btn-primary" id="submit-id-submit"> </div>
                 </form>

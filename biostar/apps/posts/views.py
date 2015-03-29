@@ -223,14 +223,24 @@ class NewPost(LoginRequiredMixin, FormView):
             del sess[settings.EXTERNAL_SESSION_KEY]
 
         form = self.form_class(initial=initial)
-        return render(request, self.template_name, {'form': form})
 
+        # Related formset
+        RelatedFormSet = inlineformset_factory(Post, RelatedPosts, RelatedForm, fk_name="post")
+        formset = RelatedFormSet()
+        helper = RelatedFormSetHelper()
+        return render(request, self.template_name, {'form': form, 'formset': formset, 'helper': helper})
 
     def post(self, request, *args, **kwargs):
         # Validating the form.
         form = self.form_class(request.POST)
+
+        # Related formset
+        RelatedFormSet = inlineformset_factory(Post, RelatedPosts, RelatedForm, fk_name="post")
+        formset = RelatedFormSet(request.POST)
+        helper = RelatedFormSetHelper()
+
         if not form.is_valid():
-            return render(request, self.template_name, {'form': form})
+            return render(request, self.template_name, {'form': form, 'formset': formset, 'helper': helper})
 
         # Valid forms start here.
         data = form.cleaned_data.get
@@ -245,6 +255,16 @@ class NewPost(LoginRequiredMixin, FormView):
             author=request.user, type=post_type,
         )
         post.save()
+
+        # Update formset with post instance
+        formset = RelatedFormSet(request.POST, instance=post)
+
+        # Save related formset for questions
+        if post.type == 0 and formset:
+            if formset.is_valid():
+                formset.save()
+            else:
+                return render(request, self.template_name, {'form': form, 'formset': formset, 'helper': helper})
 
         # Triggers a new post save.
         post.add_tags(post.tag_val)
@@ -320,12 +340,9 @@ class EditPost(LoginRequiredMixin, FormView):
         post = Post.objects.get(pk=pk)
         post = auth.post_permissions(request=request, post=post)
 
-        formset = None
-        helper = None
-        if post.type == 0:
-            RelatedFormSet = inlineformset_factory(Post, RelatedPosts, RelatedForm, fk_name="post")
-            formset = RelatedFormSet(instance=post)
-            helper = RelatedFormSetHelper()
+        RelatedFormSet = inlineformset_factory(Post, RelatedPosts, RelatedForm, fk_name="post")
+        formset = RelatedFormSet(instance=post)
+        helper = RelatedFormSetHelper()
 
         # Check and exit if not a valid edit.
         if not post.is_editable:
@@ -363,12 +380,9 @@ class EditPost(LoginRequiredMixin, FormView):
         form = form_class(request.POST)
 
         # Related formset
-        formset = None
-        helper = None
-        if post.type == 0:
-            RelatedFormSet = inlineformset_factory(Post, RelatedPosts, RelatedForm, fk_name="post")
-            formset = RelatedFormSet(request.POST, instance=post)
-            helper = RelatedFormSetHelper()
+        RelatedFormSet = inlineformset_factory(Post, RelatedPosts, RelatedForm, fk_name="post")
+        formset = RelatedFormSet(request.POST, instance=post)
+        helper = RelatedFormSetHelper()
 
         if not form.is_valid():
             # Invalid form submission.
@@ -388,11 +402,15 @@ class EditPost(LoginRequiredMixin, FormView):
         post.save()
 
         # Save related formset for questions
-        if post.type == 0:
+        if post.type == 0 and formset:
             if formset.is_valid():
                 formset.save()
             else:
                 return render(request, self.template_name, {'form': form, 'formset': formset, 'helper': helper})
+        else:
+            # Remove related post if switch post type
+            for related_post in RelatedPosts.objects.filter(post=post):
+                related_post.delete()
 
         if post.is_toplevel:
             post.add_tags(post.tag_val)
