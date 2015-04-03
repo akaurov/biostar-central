@@ -1,6 +1,7 @@
 {% extends "starbase.html" %}
 {% load server_tags %}
 {% load humanize %}
+{% load i18n %}
 
 {% block content %}
 
@@ -13,8 +14,8 @@
                 {% for vote in votes %}
                     <tr>
                         <td>
-                            {{ vote.get_type_display }}, {{ vote.date|timesince }} ago for
-                            the {{ vote.post.get_type_display|lower }}: <a
+                            {{ vote.get_type_display }}, {{ vote.date|timesince }} {% trans "ago for
+                            the" %} {{ vote.post.get_type_display|lower }}: <a
                         href="{{ vote.post.get_absolute_url }}">{{ vote.post.title }}</a>
                         </td>
                     </tr>
@@ -24,7 +25,7 @@
             {% page_bar %}
         </div>
         <div class="col-md-3 sidebar">
-            <div class="head">People voting on your posts</div>
+            <div class="head">{% trans "People voting on your posts" %}</div>
             {% sidebar_users people %}
 
         </div>

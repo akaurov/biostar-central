@@ -1,10 +1,11 @@
 {% extends "starbase.html" %}
+{% load i18n %}
 {% load server_tags %}
 {% load humanize %}
 {% load crispy_forms_tags %}
 
 {% block page_title %}
-    Update Flatpage
+    {% trans "Update Flatpage" %}
 {% endblock %}
 
 {% block content %}
@@ -16,7 +17,7 @@
 
             <form action="" method="post">{% csrf_token %}
                 {{ form.as_p }}
-                <input type="submit" value="Update"/>
+                <input type="submit" value="{% trans 'Update' %}"/>
             </form>
 
         </div>

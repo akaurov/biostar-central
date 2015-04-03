@@ -1,27 +1,28 @@
 {% extends "starbase.html" %}
 {% load socialaccount %}
+{% load i18n %}
 
 {% block page_title %}
-    Social Accounts
+    {% trans "Social Accounts" %}
 {% endblock %}
 
 {% block content %}
     <div class="row">
         <div class="col-md-8 col-md-offset-1">
 
-            <h3>Connect account </h3>
+            <h3>{% trans "Connect account" %} </h3>
 
             <div>
-                You can connect a social account to this site account.
-                This will allow you to log in more quickly from all of your devices.
+                {% trans "You can connect a social account to this site account.
+                This will allow you to log in more quickly from all of your devices." %}
             </div>
 
             <div>
-                Our access is for authentication only. We can't access your timeline, see your friends or post on your
-                behalf.
+                {% trans "Our access is for authentication only. We can't access your timeline, see your friends or post on your
+                behalf." %}
             </div>
 
-            <div> Click a link to connect that provider to your account</div>
+            <div> {% trans "Click a link to connect that provider to your account" %}</div>
             <div class="socialaccount_ballot">
                 <ul class="socialaccount_providers">
                     {% include "socialaccount/snippets/provider_list.html" with process="connect" %}
@@ -29,8 +30,8 @@
                 {% include "socialaccount/snippets/login_extra.html" %}
             </div>
 
-            <h3>Disconnect accounts </h3>
-            <p>To disconnect an account select the account from below then click the remove button </p>
+            <h3>{% trans "Disconnect accounts" %} </h3>
+            <p>{% trans "To disconnect an account select the account from below then click the remove button" %} </p>
             <form method="post" action="{% url 'socialaccount_connections' %}">
                 {% csrf_token %}
 
@@ -58,7 +59,7 @@
                     </div>
 
                     <div>
-                        <button type="submit">Disconnect</button>
+                        <button type="submit">{% trans "Disconnect" %}</button>
                     </div>
                 </fieldset>
             </form>

@@ -1,14 +1,14 @@
-
-<p>Hello {{ user.name }}!</p>
+{% blocktrans with name=user.name %}
+<p>Hello {{ name }}!</p>
 
 <p>Questions similar to yours can already be found at:</p>
-
+{% endblocktrans %}
 <ul>
 {% for post in posts %}
 	<li> <a href="{{ post.get_absolute_url }}">{{post.title}}</a></li>
 {% endfor %}
 </ul>
-
+{% blocktrans %}
 <p>
     We have closed your question to allow us to keep similar content in the same thread.
 </p>
@@ -18,7 +18,7 @@
 </p>
 
 <p>Cheers!</p>
-
+{% endblocktrans %}
 {%  if comment %}
     PS: {{ comment }}
 {%  endif %}

@@ -1,4 +1,5 @@
 {% extends "starbase.html" %}
+{% load i18n %}
 {% load server_tags %}
 {% load humanize %}
 
@@ -18,31 +19,31 @@
 
                 <div class="well">
 
-                    <h4>Server Stats</h4>
+                    <h4>{% trans "Server Stats" %}</h4>
 
-                    <p>Traffic: <b>{{ TRAFFIC|intcomma }}</b> users visited in the last hour.</p>
+                    <p>{% blocktrans with TRAFFIC=TRAFFIC|intcomma %}Traffic: <b>{{ TRAFFIC }}</b> users visited in the last hour.{% endblocktrans %}</p>
 
 
-                    <p>The site has <b>{{ user_count|intcomma }}</b> registered users that created
-                        <b>{{ post_count|intcomma }}</b> posts</li>
+                    <p>{% blocktrans with user_count=user_count|intcomma post_count=post_count|intcomma %}The site has <b>{{ user_count }}</b> registered users that created
+                        <b>{{ post_count }}</b> posts{% endblocktrans %}</li>
                     </p>
                     <p>
-                        These are distributed as <b>{{ question_count|intcomma }}</b>
-                        questions,<b> {{ answer_count|intcomma }}</b> answers
-                        and <b>{{ comment_count|intcomma }}</b> comments.
+                        {% blocktrans with question_count=question_count|intcomma answer_count=answer_count|intcomma comment_count=comment_count|intcomma %}These are distributed as <b>{{ question_count }}</b>
+                        questions,<b> {{ answer_count }}</b> answers
+                        and <b>{{ comment_count }}</b> comments.{% endblocktrans %}
                     </p>
 
 
                 </div>
 
-                <h4>Site Admins</h4>
+                <h4>{% trans "Site Admins" %}</h4>
                 <ul>
                     {% for user in admins %}
                         <li>{% gravatar user 30 %} {% userlink user %}</li>
                     {% endfor %}
                 </ul>
 
-                <h4>Site Moderators</h4>
+                <h4>{% trans "Site Moderators" %}</h4>
                 <ul>
                     {% for user in mods %}
                         <li>{% gravatar user 30 %} {% userlink user %} </li>
@@ -55,9 +56,9 @@
 
 
     {% if user.is_admin %}
-        Administrator access:
+        {% trans "Administrator access:" %}
         <a role="button" class="btn btn-primary"
-           href="{% url 'flatpage-update' flatpage.id %}">Edit {{ flatpage.title }}</a>
+           href="{% url 'flatpage-update' flatpage.id %}">{% trans "Edit" %} {{ flatpage.title }}</a>
     {% endif %}
 
 {% endblock %}

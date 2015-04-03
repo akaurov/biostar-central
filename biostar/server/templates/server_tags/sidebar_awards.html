@@ -1,14 +1,15 @@
 {% load cache %}
 {% load server_tags %}
+{% load i18n %}
 
 {% cache 200 "recent-awards" %}
-    <div class="head">Recent Awards &bull; <a href="{% url 'badge-list' %}">All &raquo;</a></div>
+    <div class="head">{% trans "Recent Awards" %} &bull; <a href="{% url 'badge-list' %}">{% trans "All" %} &raquo;</a></div>
     <div class="recent-awards">
         <ul>
             {% for award in awards %}
                 <li>
                     <a href="{% url "badge-view" award.badge.id %}">{{ award.badge.name }} <i class="{{ award.badge.icon }}"></i></a>
-                      to {% userlink award.user %}
+                      {% trans "to" %} {% userlink award.user %}
                 </li>
             {% endfor %}
         </ul>

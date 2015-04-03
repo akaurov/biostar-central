@@ -1,4 +1,5 @@
 {% load server_tags %}
+{% load i18n %}
 
 <div class="post-body {{ post.get_status_display }} clearfix">
 
@@ -19,24 +20,24 @@
 	    			width:41px;
 	    			margin:0 auto;">
 	    <div class="c">{{ post.root.view_count|bignum }}</div>
-	    <div class="t">views</div>
+	    <div class="t">{% trans "views" %}</div>
 	    </div>
 	    {% endif %}
 
         <div class="vote mark {{ post.has_upvote|on }} tip" data-toggle="tooltip" data-placement="top"
-             data-type="vote" title="Upvote!">
+             data-type="vote" title="{% trans 'Upvote!' %}">
             <i class="fa fa-thumbs-o-up fa-2x"></i></div>
 
         <div class="count" itemprop="voteCount">{{ post.vote_count }}</div>
 
         <div class="vote mark {{ post.has_bookmark|on }} tip" data-toggle="tooltip" data-placement="top"
-             data-type="bookmark" title="Bookmark!">
+             data-type="bookmark" title="{% trans 'Bookmark!' %}">
             <i class="fa fa-book fa-2x"></i>
         </div>
 
         {% if not post.is_toplevel and post.can_accept %}
             <div class="vote mark {{ post.has_accepted|on }} tip" data-toggle="tooltip" data-placement="top"
-                 data-type="accept" title="Accept!">
+                 data-type="accept" title="{% trans 'Accept!' %}">
                 <i class="fa fa-check-circle-o fa-2x"></i>
             </div>
         {% endif %}

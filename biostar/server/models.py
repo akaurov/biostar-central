@@ -7,6 +7,7 @@ Only signals and connections between models are specfied here.
 from __future__ import print_function, unicode_literals, absolute_import, division
 import logging, datetime
 from django.db.models import signals, Q
+from django.utils.translation import ugettext_lazy as _
 from allauth.account.signals import user_signed_up
 from allauth.socialaccount.signals import social_account_added
 
@@ -122,7 +123,7 @@ def award_create_messages(sender, instance, created, *args, **kwargs):
         # Generate the message from the template.
         content = html.render(name=AWARD_CREATED_HTML_TEMPLATE, award=award, user=user)
 
-        subject = "Congratulations: you won %s" % award.badge.name
+        subject = _("Congratulations: you won %s") % award.badge.name
 
         # Create the message body.
         body = MessageBody.objects.create(author=user, subject=subject, text=content)

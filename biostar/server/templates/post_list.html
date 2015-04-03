@@ -1,6 +1,7 @@
 {% extends "starbase.html" %}
 {% load server_tags %}
 {% load humanize %}
+{% load i18n %}
 
 {% block content %}
 
@@ -18,7 +19,7 @@
                     {% post_count_box post '' topic %}
                 {% empty %}
 
-                    <div class="alert alert-info">There are no results for this page.</div>
+                    <div class="alert alert-info">{% trans "There are no results for this page." %}</div>
 
                 {% endfor %}
 

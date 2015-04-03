@@ -1,9 +1,9 @@
-{{user.name}} posted the {{post.get_type_display}}: "{{ post.root.get_title|safe }}":
+{% blocktrans with name=user.name type=post.get_type_display title=post.root.get_title|safe text=post.as_text|safe|truncatewords:150 domain=site.domain post_url=post.get_absolute_url %}{{name}} posted the {{type}}: "{{ title }}":
 
-{{post.as_text|safe|truncatewords:150}}
+{{text}}
 
 ---
-See the full post at: http://{{site.domain}}{{ post.get_absolute_url }}
-{% if post.is_toplevel %}Replying to this email will post an answer to the question above.
-{% else %}Replying to this email will post a comment to the answer above.
+See the full post at: http://{{domain}}{{ post_url }}{% endblocktrans %}
+{% if post.is_toplevel %}{{% trans "Replying to this email will post an answer to the question above." %}
+{% else %}{% trans "Replying to this email will post a comment to the answer above." %}
 {% endif %}

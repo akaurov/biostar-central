@@ -1,4 +1,5 @@
 {% load humanize %}
+{% load i18n %}
 
 <div class="row pagebar">
     <div class="col-sm-3">
@@ -6,7 +7,7 @@
 
         <div class="btn-group visible-lg visible-md">
             <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-                Limit to: {{ limit }} <span class="caret"></span>
+                {% trans "Limit to:" %} {{ limit }} <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
                 {% for field in date_fields %}
@@ -21,20 +22,20 @@
 
         <span class="step-links">
         {% if page_obj.has_previous %}
-            <a href="?page={{ page_obj.previous_page_number }}&sort={{ sort }}&limit={{ limit }}&q={{ q }}">&lt;prev</a>
+            <a href="?page={{ page_obj.previous_page_number }}&sort={{ sort }}&limit={{ limit }}&q={{ q }}">&lt;{% trans "prev" %}</a>
         {% else %}
-            &lt;prev
+            &lt;{% trans "prev" %}
         {% endif %}
 
             <span class="current">
-              &bull; {{ page_obj.paginator.count|intcomma }} results &bull;
-                page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} &bull;
+              &bull; {{ page_obj.paginator.count|intcomma }} {% trans "results" %} &bull;
+                {% trans "page" %} {{ page_obj.number }} {% trans "of" %} {{ page_obj.paginator.num_pages }} &bull;
         </span>
 
             {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}&sort={{ sort }}&limit={{ limit }}&q={{ q }}">next &gt;</a>
+                <a href="?page={{ page_obj.next_page_number }}&sort={{ sort }}&limit={{ limit }}&q={{ q }}">{% trans "next" %} &gt;</a>
             {% else %}
-                next &gt;
+                {% trans "next" %} &gt;
             {% endif %}
         </span>
     </div>
@@ -42,7 +43,7 @@
     <div class="col-sm-3 visible-lg visible-md">
         <div class="btn-group pull-right">
             <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-                Sort by: {{ sort }} <span class="caret"></span>
+                {% trans "Sort by:" %} {{ sort }} <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
                 {% for field in sort_fields %}

@@ -15,6 +15,7 @@ from biostar import const
 from braces.views import LoginRequiredMixin
 from django import forms
 from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext_lazy as _
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Fieldset, Submit, ButtonHolder
 from django.http import HttpResponseRedirect
@@ -28,18 +29,18 @@ OPEN, CLOSE_OFFTOPIC, CLOSE_SPAM, DELETE, DUPLICATE, MOVE_TO_COMMENT, MOVE_TO_AN
 
 from biostar.apps.util import now
 
-POST_LIMIT_ERROR_MSG = '''
+POST_LIMIT_ERROR_MSG = _('''
 <p><b>Sorry!</b> Your posting limit of (%s) posts per six hours has been reached.</p>
 <p>This limit is very low for new users and is raised as you gain reputation.</p>
 <p>This limit is necessary to protect the site from automated postings by spammers.</p>
-'''
+''')
 
-TOP_POST_LIMIT_ERROR_MSG = '''
+TOP_POST_LIMIT_ERROR_MSG = _('''
 <p><b>Sorry!</b> Your posting limit of (%s) questions per six hours has been reached.
 Note that you can still contribute with comments and answers though.</p>
 <p>This limit is very low for new users and is raised as you gain reputation.</p>
 <p>This limit is necessary to protect the site from automated postings by spammers.</p>
-'''
+''')
 
 def update_user_status(user):
     "A user needs to have votes supporting them"
@@ -86,23 +87,23 @@ def user_exceeds_limits(request, top_level=False):
 
 class PostModForm(forms.Form):
     CHOICES = [
-        (OPEN, "Open a closed or deleted post"),
-        (MOVE_TO_ANSWER, "Move post to an answer"),
-        (MOVE_TO_COMMENT, "Move post to a comment on the top level post"),
-        (DUPLICATE, "Duplicated post (top level)"),
-        (CROSSPOST, "Cross posted at other site"),
-        (CLOSE_OFFTOPIC, "Close post (top level)"),
-        (DELETE, "Delete post"),
+        (OPEN, _("Open a closed or deleted post")),
+        (MOVE_TO_ANSWER, _("Move post to an answer")),
+        (MOVE_TO_COMMENT, _("Move post to a comment on the top level post")),
+        (DUPLICATE, _("Duplicated post (top level)")),
+        (CROSSPOST, _("Cross posted at other site")),
+        (CLOSE_OFFTOPIC, _("Close post (top level)")),
+        (DELETE, _("Delete post")),
     ]
 
-    action = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(), label="Select Action")
+    action = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(), label=_("Select Action"))
 
     comment = forms.CharField(required=False, max_length=200,
-                              help_text="Enter a reason (required when closing, crosspost). This will be inserted into a template comment.")
+                              help_text=_("Enter a reason (required when closing, crosspost). This will be inserted into a template comment."))
 
     dupe = forms.CharField(required=False, max_length=200,
-                           help_text="One or more duplicated post numbers, space or comma separated (required for duplicate closing).",
-                           label="Duplicate number(s)")
+                           help_text=_("One or more duplicated post numbers, space or comma separated (required for duplicate closing)."),
+                           label=_("Duplicate number(s)"))
 
     def __init__(self, *args, **kwargs):
         pk = kwargs['pk']
@@ -122,7 +123,7 @@ class PostModForm(forms.Form):
                 'dupe',
             ),
             ButtonHolder(
-                Submit('submit', 'Submit')
+                Submit('submit', _('Submit'))
             )
         )
 
@@ -133,13 +134,13 @@ class PostModForm(forms.Form):
         dupe = cleaned_data.get("dupe")
 
         if action == CLOSE_OFFTOPIC and not comment:
-            raise forms.ValidationError("Unable to close. Please add a comment!")
+            raise forms.ValidationError(_("Unable to close. Please add a comment!"))
 
         if action == CROSSPOST and not comment:
-            raise forms.ValidationError("Please add URL into the comment!")
+            raise forms.ValidationError(_("Please add URL into the comment!"))
 
         if action == DUPLICATE and not dupe:
-            raise forms.ValidationError("Unable to close duplicate. Please fill in the post numbers")
+            raise forms.ValidationError(_("Unable to close duplicate. Please fill in the post numbers"))
 
         if dupe:
             dupe = dupe.replace(",", " ")
@@ -163,7 +164,7 @@ class PostModeration(LoginRequiredMixin, FormView):
         post = self.get_obj()
         post = post_permissions(request, post)
         if not post.is_editable:
-            messages.warning(request, "You may not moderate this post")
+            messages.warning(request, _("You may not moderate this post"))
             return HttpResponseRedirect(post.root.get_absolute_url())
         form = self.form_class(pk=post.id)
         context = dict(form=form, post=post)
@@ -199,36 +200,36 @@ class PostModeration(LoginRequiredMixin, FormView):
 
         action = get('action')
         if action == OPEN and not user.is_moderator:
-            messages.error(request, "Only a moderator may open a post")
+            messages.error(request, _("Only a moderator may open a post"))
             return response
 
         if action == MOVE_TO_ANSWER and post.type == Post.COMMENT:
             # This is a valid action only for comments.
-            messages.success(request, "Moved post to answer")
+            messages.success(request, _("Moved post to answer"))
             query.update(type=Post.ANSWER, parent=post.root)
             root.update(reply_count=F("reply_count") + 1)
             return response
 
         if action == MOVE_TO_COMMENT and post.type == Post.ANSWER:
             # This is a valid action only for answers.
-            messages.success(request, "Moved post to answer")
+            messages.success(request, _("Moved post to answer"))
             query.update(type=Post.COMMENT, parent=post.root)
             root.update(reply_count=F("reply_count") - 1)
             return response
 
         # Some actions are valid on top level posts only.
         if action in (CLOSE_OFFTOPIC, DUPLICATE) and not post.is_toplevel:
-            messages.warning(request, "You can only close or open a top level post")
+            messages.warning(request, _("You can only close or open a top level post"))
             return response
 
         if action == OPEN:
             query.update(status=Post.OPEN)
-            messages.success(request, "Opened post: %s" % post.title)
+            messages.success(request, _("Opened post: %s") % post.title)
             return response
 
         if action in CLOSE_OFFTOPIC:
             query.update(status=Post.CLOSED)
-            messages.success(request, "Closed post: %s" % post.title)
+            messages.success(request, _("Closed post: %s") % post.title)
             content = html.render(name="messages/offtopic_posts.html", user=post.author, comment=get("comment"), post=post)
             comment = Post(content=content, type=Post.COMMENT, parent=post, author=user)
             comment.save()
@@ -264,13 +265,13 @@ class PostModeration(LoginRequiredMixin, FormView):
             if delete_only:
                 # Deleted posts can be undeleted by re-opening them.
                 query.update(status=Post.DELETED)
-                messages.success(request, "Deleted post: %s" % post.title)
+                messages.success(request, _("Deleted post: %s") % post.title)
                 response = HttpResponseRedirect(post.root.get_absolute_url())
             else:
                 # This will remove the post. Redirect depends on the level of the post.
                 url = "/" if post.is_toplevel else post.parent.get_absolute_url()
                 post.delete()
-                messages.success(request, "Removed post: %s" % post.title)
+                messages.success(request, _("Removed post: %s") % post.title)
                 response = HttpResponseRedirect(url)
 
             # Recompute post reply count
@@ -279,19 +280,19 @@ class PostModeration(LoginRequiredMixin, FormView):
             return response
 
         # By this time all actions should have been performed
-        messages.warning(request, "That seems to be an invalid action for that post. \
-                It is probably ok! Actions may be shown even when not valid.")
+        messages.warning(request, _("That seems to be an invalid action for that post. \
+                It is probably ok! Actions may be shown even when not valid."))
         return response
 
 class UserModForm(forms.Form):
     CHOICES = [
-        (User.NEW_USER, "Reinstate as new user"),
-        (User.TRUSTED, "Reinstate as trusted user"),
-        (User.SUSPENDED, "Suspend user"),
-        (User.BANNED, "Ban user"),
+        (User.NEW_USER, _("Reinstate as new user")),
+        (User.TRUSTED, _("Reinstate as trusted user")),
+        (User.SUSPENDED, _("Suspend user")),
+        (User.BANNED, _("Ban user")),
     ]
 
-    action = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(), label="Select Action")
+    action = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(), label=_("Select Action"))
 
     def __init__(self, *args, **kwargs):
         pk = kwargs['pk']
@@ -309,7 +310,7 @@ class UserModForm(forms.Form):
                 'action',
             ),
             ButtonHolder(
-                Submit('submit', 'Submit')
+                Submit('submit', _('Submit'))
             )
         )
 
@@ -345,30 +346,30 @@ class UserModeration(LoginRequiredMixin, FormView):
         response = HttpResponseRedirect(target.get_absolute_url())
 
         if target.is_administrator:
-            messages.warning(request, "Cannot moderate an administrator")
+            messages.warning(request, _("Cannot moderate an administrator"))
             return response
 
         if user == target:
-            messages.warning(request, "Cannot moderate yourself")
+            messages.warning(request, _("Cannot moderate yourself"))
             return response
 
         if not user.is_moderator:
-            messages.warning(request, "Only moderators have this permission")
+            messages.warning(request, _("Only moderators have this permission"))
             return response
 
         if not target.is_editable:
-            messages.warning(request, "Target not editable by this user")
+            messages.warning(request, _("Target not editable by this user"))
             return response
 
         form = self.form_class(request.POST, pk=target.id)
         if not form.is_valid():
-            messages.error(request, "Invalid user modification action")
+            messages.error(request, _("Invalid user modification action"))
             return response
 
         action = int(form.cleaned_data['action'])
 
         if action == User.BANNED and not user.is_administrator:
-            messages.error(request, "Only administrators may ban users")
+            messages.error(request, _("Only administrators may ban users"))
             return response
 
         if action == User.BANNED and user.is_administrator:
@@ -379,7 +380,7 @@ class UserModeration(LoginRequiredMixin, FormView):
             # These can still be removed but via the admin interface
             # We do this to limit damage that a hacked admin account could do.
             if target.score > 3:
-                messages.error(request, "Target user has a high score and can only be banned via the admin interface")
+                messages.error(request, _("Target user has a high score and can only be banned via the admin interface"))
                 return response
 
             # Remove badges that may have been earned by this user.
@@ -396,12 +397,12 @@ class UserModeration(LoginRequiredMixin, FormView):
             count = query.count()
             query.delete()
 
-            messages.success(request, "User banned, %s posts removed" % count)
+            messages.success(request, _("User banned, %s posts removed") % count)
 
 
         # Apply the new status
         User.objects.filter(pk=target.id).update(status=action)
 
-        messages.success(request, 'Moderation completed')
+        messages.success(request, _('Moderation completed'))
         return response
 

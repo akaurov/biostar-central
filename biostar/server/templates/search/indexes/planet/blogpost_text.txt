@@ -1,2 +1,3 @@
-BLOG: {{ object.title }}
+{% load i18n %}
+{% trans "BLOG:" %} {{ object.title }}
 {{ object.html }}

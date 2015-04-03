@@ -5,6 +5,7 @@ from biostar.apps.posts.models import Post, Vote
 from biostar.apps.users.models import User
 from django.views.generic import View
 from django.shortcuts import render_to_response, render
+from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect, Http404
 from functools import partial
 from django.db import transaction
@@ -40,16 +41,16 @@ class ajax_error_wrapper(object):
     def __call__(self, request):
         try:
             if request.method != 'POST':
-                return ajax_error('POST method must be used.')
+                return ajax_error(_('POST method must be used.'))
 
             if not request.user.is_authenticated():
-                return ajax_error('You must be logged in to do that')
+                return ajax_error(_('You must be logged in to do that'))
 
             value = self.f(request)
             return value
         except Exception, exc:
             traceback.print_exc()
-            return ajax_error('Error: %s' % exc)
+            return ajax_error(_('Error: %s') % exc)
 
 
 POST_TYPE_MAP = dict(vote=Vote.UP, bookmark=Vote.BOOKMARK, accept=Vote.ACCEPT)
@@ -61,12 +62,12 @@ def perform_vote(post, user, vote_type):
     votes = Vote.objects.filter(author=user, post=post, type=vote_type)
     if votes:
         vote = votes[0]
-        msg = "%s removed" % vote.get_type_display()
+        msg = _("%s removed") % vote.get_type_display()
         change = -1
     else:
         change = +1
         vote = Vote.objects.create(author=user, post=post, type=vote_type)
-        msg = "%s added" % vote.get_type_display()
+        msg = _("%s added") % vote.get_type_display()
 
     if post.author != user:
         # Update the user reputation only if the author is different.
@@ -115,13 +116,13 @@ def vote_handler(request):
     post = Post.objects.get(pk=post_id)
 
     if post.author == user and vote_type == Vote.UP:
-        return ajax_error("You can't upvote your own post.")
+        return ajax_error(_("You can't upvote your own post."))
 
     #if post.author == user and vote_type == Vote.ACCEPT:
     #    return ajax_error("You can't accept your own post.")
 
     if post.root.author != user and vote_type == Vote.ACCEPT:
-        return ajax_error("Only the person asking the question may accept this answer.")
+        return ajax_error(_("Only the person asking the question may accept this answer."))
 
     with transaction.atomic():
         msg = perform_vote(post=post, user=user, vote_type=vote_type)

@@ -1,0 +1,2262 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-04-03 06:23-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: const.py:18
+msgid "default"
+msgstr ""
+
+#: const.py:19
+msgid "local messages"
+msgstr ""
+
+#: const.py:20
+msgid "email"
+msgstr ""
+
+#: const.py:21
+msgid "email for every new thread (mailing list mode)"
+msgstr ""
+
+#: const.py:28
+msgid "recent visit"
+msgstr ""
+
+#: const.py:29
+msgid "reputation"
+msgstr ""
+
+#: const.py:30
+msgid "date joined"
+msgstr ""
+
+#: const.py:32
+msgid "activity level"
+msgstr ""
+
+#: const.py:43
+msgid "update"
+msgstr ""
+
+#: const.py:44 server/templates/server_tags/post_body.html:23
+#: server/templates/server_tags/post_count_box.html:20
+msgid "views"
+msgstr ""
+
+#: const.py:45
+msgid "followers"
+msgstr ""
+
+#: const.py:46
+msgid "answers"
+msgstr ""
+
+#: const.py:47
+msgid "bookmarks"
+msgstr ""
+
+#: const.py:48
+msgid "votes"
+msgstr ""
+
+#: const.py:49
+msgid "rank"
+msgstr ""
+
+#: const.py:50
+msgid "creation"
+msgstr ""
+
+#: const.py:61
+msgid "all time"
+msgstr ""
+
+#: const.py:62
+msgid "today"
+msgstr ""
+
+#: const.py:63
+msgid "this week"
+msgstr ""
+
+#: const.py:64
+msgid "this month"
+msgstr ""
+
+#: const.py:65
+msgid "this year"
+msgstr ""
+
+#: const.py:73
+msgid "Invalid limit parameter received"
+msgstr ""
+
+#: apps/badges/award_defs.py:18
+msgid "Autobiographer"
+msgstr ""
+
+#: apps/badges/award_defs.py:19
+msgid ""
+"has more than 80 characters in the information field of the user's profile"
+msgstr ""
+
+#: apps/badges/award_defs.py:25
+#, fuzzy
+msgid "Good Question"
+msgstr ""
+
+#: apps/badges/award_defs.py:26
+msgid "asked a question that was upvoted at least 5 times"
+msgstr ""
+
+#: apps/badges/award_defs.py:32
+msgid "Good Answer"
+msgstr ""
+
+#: apps/badges/award_defs.py:33
+msgid "created an answer that was upvoted at least 5 times"
+msgstr ""
+
+#: apps/badges/award_defs.py:39
+msgid "Student"
+msgstr ""
+
+#: apps/badges/award_defs.py:40
+msgid "asked a question with at least 3 up-votes"
+msgstr ""
+
+#: apps/badges/award_defs.py:46
+msgid "Teacher"
+msgstr ""
+
+#: apps/badges/award_defs.py:47
+msgid "created an answer with at least 3 up-votes"
+msgstr ""
+
+#: apps/badges/award_defs.py:53
+msgid "Commentator"
+msgstr ""
+
+#: apps/badges/award_defs.py:54
+msgid "created a comment with at least 3 up-votes"
+msgstr ""
+
+#: apps/badges/award_defs.py:60
+msgid "Centurion"
+msgstr ""
+
+#: apps/badges/award_defs.py:61
+msgid "created 100 posts"
+msgstr ""
+
+#: apps/badges/award_defs.py:68
+#, fuzzy
+msgid "Epic Question"
+msgstr ""
+
+#: apps/badges/award_defs.py:69
+msgid "created a question with more than 10,000 views"
+msgstr ""
+
+#: apps/badges/award_defs.py:76
+msgid "Popular Question"
+msgstr ""
+
+#: apps/badges/award_defs.py:77
+msgid "created a question with more than 1,000 views"
+msgstr ""
+
+#: apps/badges/award_defs.py:84
+msgid "Oracle"
+msgstr ""
+
+#: apps/badges/award_defs.py:85
+msgid "created more than 1,000 posts (questions + answers + comments)"
+msgstr ""
+
+#: apps/badges/award_defs.py:92
+msgid "Pundit"
+msgstr ""
+
+#: apps/badges/award_defs.py:93
+msgid "created a comment with more than 10 votes"
+msgstr ""
+
+#: apps/badges/award_defs.py:100
+msgid "Guru"
+msgstr ""
+
+#: apps/badges/award_defs.py:101
+msgid "received more than 100 upvotes"
+msgstr ""
+
+#: apps/badges/award_defs.py:108
+msgid "Cylon"
+msgstr ""
+
+#: apps/badges/award_defs.py:109
+msgid "received 1,000 up votes"
+msgstr ""
+
+#: apps/badges/award_defs.py:116
+msgid "Voter"
+msgstr ""
+
+#: apps/badges/award_defs.py:117
+msgid "voted more than 100 times"
+msgstr ""
+
+#: apps/badges/award_defs.py:123
+msgid "Supporter"
+msgstr ""
+
+#: apps/badges/award_defs.py:124
+msgid "voted at least 25 times"
+msgstr ""
+
+#: apps/badges/award_defs.py:131
+msgid "Scholar"
+msgstr ""
+
+#: apps/badges/award_defs.py:132
+msgid "created an answer that has been accepted"
+msgstr ""
+
+#: apps/badges/award_defs.py:138
+msgid "Prophet"
+msgstr ""
+
+#: apps/badges/award_defs.py:139
+msgid "created a post with more than 20 followers"
+msgstr ""
+
+#: apps/badges/award_defs.py:145
+msgid "Librarian"
+msgstr ""
+
+#: apps/badges/award_defs.py:146
+msgid "created a post with more than 10 bookmarks"
+msgstr ""
+
+#: apps/badges/award_defs.py:158
+msgid "Rising Star"
+msgstr ""
+
+#: apps/badges/award_defs.py:159
+msgid "created 50 posts within first three months of joining"
+msgstr ""
+
+#: apps/badges/award_defs.py:189
+#, fuzzy
+msgid "Great Question"
+msgstr ""
+
+#: apps/badges/award_defs.py:190
+msgid "created a question with more than 5,000 views"
+msgstr ""
+
+#: apps/badges/award_defs.py:197
+msgid "Gold Standard"
+msgstr ""
+
+#: apps/badges/award_defs.py:198
+msgid "created a post with more than 25 bookmarks"
+msgstr ""
+
+#: apps/badges/award_defs.py:205
+msgid "Appreciated"
+msgstr ""
+
+#: apps/badges/award_defs.py:206
+msgid "created a post with more than 5 votes"
+msgstr ""
+
+#: apps/badges/models.py:14
+msgid "Bronze"
+msgstr ""
+
+#: apps/badges/models.py:14
+msgid "Silver"
+msgstr ""
+
+#: apps/badges/models.py:14
+msgid "Gold"
+msgstr ""
+
+#: apps/badges/templates/default.html:2
+#, python-format
+msgid ""
+"<p>Congratulations!</p>\n"
+"\n"
+"<p>You have been awarded the %(name)s badge!</p>\n"
+"\n"
+"<p>And so your reputations grows ...</p>"
+msgstr ""
+
+#: apps/messages/models.py:36
+msgid "Text"
+msgstr ""
+
+#: apps/messages/models.py:37
+msgid "Sender"
+msgstr ""
+
+#: apps/messages/models.py:38
+msgid "Subject"
+msgstr ""
+
+#: apps/messages/models.py:39
+msgid "Parent message"
+msgstr ""
+
+#: apps/messages/models.py:40
+msgid "sent at"
+msgstr ""
+
+#: apps/messages/models.py:59
+msgid "Recipient"
+msgstr ""
+
+#: apps/messages/models.py:60
+msgid "Message"
+msgstr ""
+
+#: apps/posts/models.py:139 apps/posts/views.py:60
+#, fuzzy
+msgid "Question"
+msgstr ""
+
+#: apps/posts/models.py:139
+msgid "Answer"
+msgstr ""
+
+#: apps/posts/models.py:139
+msgid "Comment"
+msgstr ""
+
+#: apps/posts/models.py:140
+msgid "Job"
+msgstr ""
+
+#: apps/posts/models.py:140 apps/posts/views.py:63
+msgid "Forum"
+msgstr ""
+
+#: apps/posts/models.py:140 apps/posts/views.py:62
+msgid "Tutorial"
+msgstr ""
+
+#: apps/posts/models.py:141
+msgid "Data"
+msgstr ""
+
+#: apps/posts/models.py:141 apps/posts/views.py:64
+msgid "Page"
+msgstr ""
+
+#: apps/posts/models.py:141 apps/posts/views.py:62
+msgid "Tool"
+msgstr ""
+
+#: apps/posts/models.py:141 apps/posts/views.py:63
+msgid "News"
+msgstr ""
+
+#: apps/posts/models.py:142 apps/posts/views.py:64 apps/users/models.py:57
+msgid "Blog"
+msgstr ""
+
+#: apps/posts/models.py:142
+msgid "Bulletin Board"
+msgstr ""
+
+#: apps/posts/models.py:402
+msgid "Easier"
+msgstr ""
+
+#: apps/posts/models.py:402
+msgid "Harder"
+msgstr ""
+
+#: apps/posts/models.py:403
+msgid "Common"
+msgstr ""
+
+#: apps/posts/models.py:403
+msgid "Special"
+msgstr ""
+
+#: apps/posts/models.py:539 apps/users/models.py:57
+msgid "User"
+msgstr ""
+
+#: apps/posts/models.py:540 apps/posts/views.py:114
+msgid "Post"
+msgstr ""
+
+#: apps/posts/models.py:542
+msgid "Date"
+msgstr ""
+
+#: apps/posts/views.py:35
+msgid "Please enter a title"
+msgstr ""
+
+#: apps/posts/views.py:38
+msgid "The title is too short"
+msgstr ""
+
+#: apps/posts/views.py:42
+msgid "More than two words please."
+msgstr ""
+
+#: apps/posts/views.py:49
+msgid "Please enter at least one tag"
+msgstr ""
+
+#: apps/posts/views.py:51
+msgid "Tag line is too long (50 characters max)"
+msgstr ""
+
+#: apps/posts/views.py:54
+msgid "You have too many tags (5 allowed)"
+msgstr ""
+
+#: apps/posts/views.py:61
+msgid "Job Ad"
+msgstr ""
+
+#: apps/posts/views.py:67
+msgid "Post Title"
+msgstr ""
+
+#: apps/posts/views.py:69
+msgid "Descriptive titles promote better answers."
+msgstr ""
+
+#: apps/posts/views.py:72
+msgid "Post Type"
+msgstr ""
+
+#: apps/posts/views.py:73
+msgid "Select a post type: Question, Forum, Job, Blog"
+msgstr ""
+
+#: apps/posts/views.py:76
+msgid "Post Tags"
+msgstr ""
+
+#: apps/posts/views.py:78
+msgid ""
+"Choose one or more tags to match the topic. To create a new tag just type it "
+"in and press ENTER."
+msgstr ""
+
+#: apps/posts/views.py:83
+msgid "Enter your post below"
+msgstr ""
+
+#: apps/posts/views.py:165
+msgid "Incorrect request. The name parameter is missing"
+msgstr ""
+
+#: apps/posts/views.py:172
+msgid "Incorrect EXTERNAL_AUTH settings, internal exception"
+msgstr ""
+
+#: apps/posts/views.py:176
+msgid "Incorrect EXTERNAL_AUTH, no KEY found for this name"
+msgstr ""
+
+#: apps/posts/views.py:185
+msgid "digests does not match"
+msgstr ""
+
+#: apps/posts/views.py:273 apps/posts/views.py:322
+#, python-format
+msgid "%s created"
+msgstr ""
+
+#: apps/posts/views.py:303
+msgid "The post does not exist. Perhaps it was deleted"
+msgstr ""
+
+#: apps/posts/views.py:350 apps/posts/views.py:375
+msgid "This user may not modify the post"
+msgstr ""
+
+#: apps/posts/views.py:370
+msgid ""
+"This post is not editable because of an iframe! Contact if you must edit it"
+msgstr ""
+
+#: apps/posts/views.py:423
+msgid "Post updated"
+msgstr ""
+
+#: apps/users/models.py:57
+msgid "Moderator"
+msgstr ""
+
+#: apps/users/models.py:57
+msgid "Admin"
+msgstr ""
+
+#: apps/users/models.py:60
+msgid "New User"
+msgstr ""
+
+#: apps/users/models.py:60
+msgid "Trusted"
+msgstr ""
+
+#: apps/users/models.py:60
+msgid "Suspended"
+msgstr ""
+
+#: apps/users/models.py:60
+msgid "Banned"
+msgstr ""
+
+#: apps/users/models.py:299
+msgid "Password"
+msgstr ""
+
+#: apps/users/models.py:300
+msgid "Password confirmation"
+msgstr ""
+
+#: apps/users/models.py:311
+msgid "Passwords don't match"
+msgstr ""
+
+#: apps/users/views.py:26
+msgid "The name displayed on the site (required)"
+msgstr ""
+
+#: apps/users/views.py:28
+msgid "Your email, it will not be visible to other users (required)"
+msgstr ""
+
+#: apps/users/views.py:31
+msgid "Country/City/Institution (recommended)"
+msgstr ""
+
+#: apps/users/views.py:34
+msgid "The URL to your website (optional)"
+msgstr ""
+
+#: apps/users/views.py:37
+msgid "Your twitter id (optional)"
+msgstr ""
+
+#: apps/users/views.py:40
+msgid "Your Google Scholar ID (optional)"
+msgstr ""
+
+#: apps/users/views.py:43
+msgid ""
+"Post with tags listed here will show up in the My Tags tab. Use a comma to "
+"separate tags. Add a <code>!</code> to remove a tag. Example: <code>galaxy, "
+"bed, solid!</code> (optional)"
+msgstr ""
+
+#: apps/users/views.py:46
+msgid ""
+"Get email when a post matching the tag is posted. Example: <code>minia, "
+"bedops, breakdancer, music</code>."
+msgstr ""
+
+#: apps/users/views.py:48
+msgid "Email Digest"
+msgstr ""
+
+#: apps/users/views.py:49
+msgid ""
+"(This feature is not working yet!). Sets the frequence of digest emails. A "
+"digest email is a summary of events on the site."
+msgstr ""
+
+#: apps/users/views.py:51
+msgid "Notifications"
+msgstr ""
+
+#: apps/users/views.py:52
+msgid ""
+"Default mode  sends you an email if you receive anwers to questions that "
+"you've posted."
+msgstr ""
+
+#: apps/users/views.py:54
+msgid "Add some information about yourself"
+msgstr ""
+
+#: apps/users/views.py:55
+msgid "A brief description about yourself (recommended)"
+msgstr ""
+
+#: apps/users/views.py:64
+msgid "Update your profile"
+msgstr ""
+
+#: apps/users/views.py:84 apps/users/views.py:199 server/moderate.py:126
+#: server/moderate.py:313 server/templates/post_edit.html:62
+msgid "Submit"
+msgstr ""
+
+#: apps/users/views.py:108 apps/users/views.py:129
+msgid "Only owners may edit their profiles"
+msgstr ""
+
+#: apps/users/views.py:138
+msgid "The email that you've entered is already registered to another user!"
+msgstr ""
+
+#: apps/users/views.py:151
+msgid "Profile updated"
+msgstr ""
+
+#: apps/users/views.py:184
+msgid "Emails"
+msgstr ""
+
+#: apps/users/views.py:185
+msgid "Sets the frequence of digest emails"
+msgstr ""
+
+#: apps/users/views.py:195
+msgid "Update your digest settings"
+msgstr ""
+
+#: apps/users/views.py:210
+msgid "Invalid user identifier."
+msgstr ""
+
+#: apps/users/views.py:213
+msgid "User unsubscribed."
+msgstr ""
+
+#: apps/users/views.py:235
+#, python-format
+msgid "Email frequency has been set to %s"
+msgstr ""
+
+#: apps/util/captcha/fields.py:14
+msgid "Please check your math and try again."
+msgstr ""
+
+#: apps/util/captcha/fields.py:15
+msgid "Enter a whole number."
+msgstr ""
+
+#: apps/util/captcha/widgets.py:17
+#, python-format
+msgid "What is %(num1)i %(operator)s %(num2)i?"
+msgstr ""
+
+#: server/ajax.py:44
+msgid "POST method must be used."
+msgstr ""
+
+#: server/ajax.py:47
+msgid "You must be logged in to do that"
+msgstr ""
+
+#: server/ajax.py:53
+#, python-format
+msgid "Error: %s"
+msgstr ""
+
+#: server/ajax.py:65
+#, python-format
+msgid "%s removed"
+msgstr ""
+
+#: server/ajax.py:70
+#, python-format
+msgid "%s added"
+msgstr ""
+
+#: server/ajax.py:119
+msgid "You can't upvote your own post."
+msgstr ""
+
+#: server/ajax.py:125
+msgid "Only the person asking the question may accept this answer."
+msgstr ""
+
+#: server/feeds.py:38
+#, python-format
+msgid "%s Planet!"
+msgstr ""
+
+#: server/feeds.py:39
+#, python-format
+msgid "Latest 50 posts of the %s"
+msgstr ""
+
+#: server/feeds.py:62
+msgid "title"
+msgstr ""
+
+#: server/feeds.py:63
+#, fuzzy
+msgid "description"
+msgstr ""
+
+#: server/feeds.py:82
+#, python-format
+msgid "%s latest!"
+msgstr ""
+
+#: server/feeds.py:83
+#, python-format
+msgid "Latest 25 posts from the %s"
+msgstr ""
+
+#: server/feeds.py:91
+msgid "job"
+msgstr ""
+
+#: server/feeds.py:91
+msgid "blog"
+msgstr ""
+
+#: server/feeds.py:91
+#, fuzzy
+msgid "question"
+msgstr ""
+
+#: server/feeds.py:92
+msgid "forum"
+msgstr ""
+
+#: server/feeds.py:92 server/templates/server_tags/page_bar.html:15
+#: server/templates/server_tags/page_bar_sort_posts.html:32
+#: server/templates/server_tags/page_bar_sort_users.html:32
+msgid "page"
+msgstr ""
+
+#: server/feeds.py:102 server/feeds.py:118
+#, python-format
+msgid "Activity on posts  %s"
+msgstr ""
+
+#: server/feeds.py:105 server/feeds.py:121
+msgid "Post Activity"
+msgstr ""
+
+#: server/feeds.py:137
+#, python-format
+msgid "Posts that match  %s"
+msgstr ""
+
+#: server/feeds.py:140
+msgid "Post Feed"
+msgstr ""
+
+#: server/feeds.py:153
+#, python-format
+msgid "Posts for users that match  %s"
+msgstr ""
+
+#: server/feeds.py:156
+msgid "User Feed"
+msgstr ""
+
+#: server/middleware.py:158
+msgid ""
+"Sorry, this account has been suspended. Please contact the administrators."
+msgstr ""
+
+#: server/middleware.py:168
+msgid "Login completed"
+msgstr ""
+
+#: server/models.py:126
+#, python-format
+msgid "Congratulations: you won %s"
+msgstr ""
+
+#: server/moderate.py:32
+#, python-format
+msgid ""
+"\n"
+"<p><b>Sorry!</b> Your posting limit of (%s) posts per six hours has been "
+"reached.</p>\n"
+"<p>This limit is very low for new users and is raised as you gain reputation."
+"</p>\n"
+"<p>This limit is necessary to protect the site from automated postings by "
+"spammers.</p>\n"
+msgstr ""
+
+#: server/moderate.py:38
+#, python-format
+msgid ""
+"\n"
+"<p><b>Sorry!</b> Your posting limit of (%s) questions per six hours has been "
+"reached.\n"
+"Note that you can still contribute with comments and answers though.</p>\n"
+"<p>This limit is very low for new users and is raised as you gain reputation."
+"</p>\n"
+"<p>This limit is necessary to protect the site from automated postings by "
+"spammers.</p>\n"
+msgstr ""
+
+#: server/moderate.py:90
+msgid "Open a closed or deleted post"
+msgstr ""
+
+#: server/moderate.py:91
+msgid "Move post to an answer"
+msgstr ""
+
+#: server/moderate.py:92
+msgid "Move post to a comment on the top level post"
+msgstr ""
+
+#: server/moderate.py:93
+msgid "Duplicated post (top level)"
+msgstr ""
+
+#: server/moderate.py:94
+msgid "Cross posted at other site"
+msgstr ""
+
+#: server/moderate.py:95
+msgid "Close post (top level)"
+msgstr ""
+
+#: server/moderate.py:96
+msgid "Delete post"
+msgstr ""
+
+#: server/moderate.py:99 server/moderate.py:295
+msgid "Select Action"
+msgstr ""
+
+#: server/moderate.py:102
+msgid ""
+"Enter a reason (required when closing, crosspost). This will be inserted "
+"into a template comment."
+msgstr ""
+
+#: server/moderate.py:105
+msgid ""
+"One or more duplicated post numbers, space or comma separated (required for "
+"duplicate closing)."
+msgstr ""
+
+#: server/moderate.py:106
+msgid "Duplicate number(s)"
+msgstr ""
+
+#: server/moderate.py:137
+msgid "Unable to close. Please add a comment!"
+msgstr ""
+
+#: server/moderate.py:140
+msgid "Please add URL into the comment!"
+msgstr ""
+
+#: server/moderate.py:143
+msgid "Unable to close duplicate. Please fill in the post numbers"
+msgstr ""
+
+#: server/moderate.py:167
+msgid "You may not moderate this post"
+msgstr ""
+
+#: server/moderate.py:203
+msgid "Only a moderator may open a post"
+msgstr ""
+
+#: server/moderate.py:208 server/moderate.py:215
+msgid "Moved post to answer"
+msgstr ""
+
+#: server/moderate.py:222
+msgid "You can only close or open a top level post"
+msgstr ""
+
+#: server/moderate.py:227
+#, python-format
+msgid "Opened post: %s"
+msgstr ""
+
+#: server/moderate.py:232
+#, python-format
+msgid "Closed post: %s"
+msgstr ""
+
+#: server/moderate.py:268
+#, python-format
+msgid "Deleted post: %s"
+msgstr ""
+
+#: server/moderate.py:274
+#, python-format
+msgid "Removed post: %s"
+msgstr ""
+
+#: server/moderate.py:283
+msgid ""
+"That seems to be an invalid action for that post.                 It is "
+"probably ok! Actions may be shown even when not valid."
+msgstr ""
+
+#: server/moderate.py:289
+msgid "Reinstate as new user"
+msgstr ""
+
+#: server/moderate.py:290
+msgid "Reinstate as trusted user"
+msgstr ""
+
+#: server/moderate.py:291
+msgid "Suspend user"
+msgstr ""
+
+#: server/moderate.py:292
+msgid "Ban user"
+msgstr ""
+
+#: server/moderate.py:349
+msgid "Cannot moderate an administrator"
+msgstr ""
+
+#: server/moderate.py:353
+msgid "Cannot moderate yourself"
+msgstr ""
+
+#: server/moderate.py:357
+msgid "Only moderators have this permission"
+msgstr ""
+
+#: server/moderate.py:361
+msgid "Target not editable by this user"
+msgstr ""
+
+#: server/moderate.py:366
+msgid "Invalid user modification action"
+msgstr ""
+
+#: server/moderate.py:372
+msgid "Only administrators may ban users"
+msgstr ""
+
+#: server/moderate.py:383
+msgid ""
+"Target user has a high score and can only be banned via the admin interface"
+msgstr ""
+
+#: server/moderate.py:400
+#, python-format
+msgid "User banned, %s posts removed"
+msgstr ""
+
+#: server/moderate.py:406
+msgid "Moderation completed"
+msgstr ""
+
+#: server/orcid.py:32
+msgid ""
+"Do you want to import your <i>Biography</i> and <i>Works</i> sections from "
+"ORCID? <a href='{}'>Yes</a>"
+msgstr ""
+
+#: server/orcid.py:50
+msgid "<b>Works</b><br /><ul>"
+msgstr ""
+
+#: server/orcid.py:72
+msgid "<b>Biography</b><br />"
+msgstr ""
+
+#: server/orcid.py:77
+msgid "<a href='{}'>Full ORCID profile...</a>"
+msgstr ""
+
+#: server/search.py:57 server/templates/post_details.html:87
+#: server/templates/starbase.html:105 server/templates/search/search.html:16
+msgid "Search"
+msgstr ""
+
+#: server/views.py:43
+msgid "Title"
+msgstr ""
+
+#: server/views.py:87
+msgid "latest"
+msgstr ""
+
+#: server/views.py:110
+msgid ""
+"Posts matching the <b><i class=\"fa fa-tag\"></i> My Tags</b> setting in "
+"your user profile"
+msgstr ""
+
+#: server/views.py:119
+msgid "Threads that will produce notifications."
+msgstr ""
+
+#: server/views.py:134
+#, python-format
+msgid "Showing: <code>%s</code> &bull; <a href='/'>reset</a>"
+msgstr ""
+
+#: server/views.py:167
+#, python-format
+msgid "%s Posts"
+msgstr ""
+
+#: server/views.py:169
+msgid "Latest Posts"
+msgstr ""
+
+#: server/views.py:176
+msgid "Session expired"
+msgstr ""
+
+#: server/views.py:219 server/templates/server_tags/nav_bar.html:124
+msgid "Messages"
+msgstr ""
+
+#: server/views.py:230 server/templates/starbase.html:107
+msgid "Tags"
+msgstr ""
+
+#: server/views.py:259 server/templates/server_tags/nav_bar.html:134
+msgid "Votes"
+msgstr ""
+
+#: server/views.py:337
+msgid "Invalid page number"
+msgstr ""
+
+#: server/views.py:608
+msgid "Only administrators may edit that page"
+msgstr ""
+
+#: server/views.py:758 server/views.py:766
+#, python-format
+msgid "Unable to redirect: %s"
+msgstr ""
+
+#: server/templates/404.html:7
+msgid "404 Not Found"
+msgstr ""
+
+#: server/templates/404.html:14
+#, python-format
+msgid ""
+"<h3>404 Error</h3>\n"
+"                Page at <code>%(request_path)s</code> not found!"
+msgstr ""
+
+#: server/templates/500.html:9
+msgid ""
+"<h3>Internal Error!</h3>\n"
+"<p>\n"
+"    Sorry about that.\n"
+"</p>\n"
+"\n"
+"<p>\n"
+"    A detailed error report has been generated and has been sent to the "
+"managers.\n"
+"</p>\n"
+"\n"
+"<p>\n"
+"    If the problem persists please contact the site owners.\n"
+"</p>"
+msgstr ""
+
+#: server/templates/badge_details.html:7
+#: server/templates/badge_details.html:15
+msgid "Badge:"
+msgstr ""
+
+#: server/templates/badge_details.html:16
+#: server/templates/server_tags/nav_bar.html:13
+#: server/templates/server_tags/nav_bar.html:33
+#: server/templates/server_tags/sidebar_awards.html:6
+#: server/templates/server_tags/sidebar_locations.html:7
+msgid "All"
+msgstr ""
+
+#: server/templates/badge_details.html:18
+#, python-format
+msgid "warded %(count)s time%(pcount)s for: <em>%(desc)s</em>"
+msgstr ""
+
+#: server/templates/badge_details.html:20
+msgid "Recently awarded to"
+msgstr ""
+
+#: server/templates/badge_details.html:30
+msgid "For:"
+msgstr ""
+
+#: server/templates/badge_list.html:7
+msgid "Badge List"
+msgstr ""
+
+#: server/templates/badge_list.html:15
+msgid "Badge list"
+msgstr ""
+
+#: server/templates/email_list_form.html:7
+msgid "Email list subscription"
+msgstr ""
+
+#: server/templates/email_list_form.html:14
+msgid "Update Email List Settings"
+msgstr ""
+
+#: server/templates/message_list.html:17
+msgid "ago:"
+msgstr ""
+
+#: server/templates/message_list.html:26
+msgid "Messages by"
+msgstr ""
+
+#: server/templates/post_details.html:43
+#, python-format
+msgid "Please <a href=\"%(the_url)s\">log in</a> to add an answer."
+msgstr ""
+
+#: server/templates/post_details.html:50
+msgid "The thread is closed. No new answers may be added."
+msgstr ""
+
+#: server/templates/post_details.html:57
+msgid "Add your answer"
+msgstr ""
+
+#: server/templates/post_details.html:61
+msgid ""
+"<strong>Note:</strong> Answers should respond to the original question on "
+"the\n"
+"                                top!"
+msgstr ""
+
+#: server/templates/post_details.html:78
+msgid "Add Answer"
+msgstr ""
+
+#: server/templates/post_details.html:87
+msgid "Similar posts"
+msgstr ""
+
+#: server/templates/post_details.html:109
+msgid "Nothing matches yet."
+msgstr ""
+
+#: server/templates/post_details.html:118
+msgid "Easier questions"
+msgstr ""
+
+#: server/templates/post_details.html:130
+msgid "Harder questions"
+msgstr ""
+
+#: server/templates/post_details.html:142
+msgid "Common questions"
+msgstr ""
+
+#: server/templates/post_details.html:154
+msgid "Special questions"
+msgstr ""
+
+#: server/templates/post_edit.html:9
+msgid "Update Post"
+msgstr ""
+
+#: server/templates/post_list.html:22 server/templates/user_details.html:169
+msgid "There are no results for this page."
+msgstr ""
+
+#: server/templates/post_moderation_form.html:7
+msgid "Moderating"
+msgstr ""
+
+#: server/templates/rss_info.html:7 server/templates/rss_info.html.py:16
+msgid "RSS Feeds"
+msgstr ""
+
+#: server/templates/rss_info.html:21
+msgid "Standard feeds:"
+msgstr ""
+
+#: server/templates/rss_info.html:26
+msgid "Latest Posts</a> - latest posts (all posts)"
+msgstr ""
+
+#: server/templates/rss_info.html:27
+msgid "New Questions</a> - latest questions"
+msgstr ""
+
+#: server/templates/rss_info.html:28
+msgid "New Job postings</a> - latest jobs"
+msgstr ""
+
+#: server/templates/rss_info.html:29
+msgid "Planet Feed</a> - latest blog entries"
+msgstr ""
+
+#: server/templates/rss_info.html:34
+msgid "Advanced usage, multiple sources can be added to a feed."
+msgstr ""
+
+#: server/templates/rss_info.html:39
+msgid "Follow posts of different types</a>, posts of certain types:"
+msgstr ""
+
+#: server/templates/rss_info.html:42
+msgid ""
+"Follow multiple posts</a>, answers and comments attached to the\n"
+"                            specified posts:"
+msgstr ""
+
+#: server/templates/rss_info.html:45
+msgid ""
+"Follow multiple tags</a>, posts that are tagged with one or more\n"
+"                            tags:"
+msgstr ""
+
+#: server/templates/rss_info.html:49
+msgid "Follow multiple users</a> a feed to posts by these users:"
+msgstr ""
+
+#: server/templates/site_description.html:2
+msgid "Welcome to"
+msgstr ""
+
+#: server/templates/starbase.html:106
+msgid "Users"
+msgstr ""
+
+#: server/templates/starbase.html:108
+msgid "Badges"
+msgstr ""
+
+#: server/templates/starbase.html:113
+msgid "Help"
+msgstr ""
+
+#: server/templates/starbase.html:115
+msgid "About"
+msgstr ""
+
+#: server/templates/starbase.html:116
+msgid "FAQ"
+msgstr ""
+
+#: server/templates/starbase.html:121
+msgid "Access"
+msgstr ""
+
+#: server/templates/starbase.html:123
+msgid "RSS"
+msgstr ""
+
+#: server/templates/starbase.html:125
+msgid "API"
+msgstr ""
+
+#: server/templates/starbase.html:139
+#, python-format
+msgid ""
+"\n"
+"                Use of this site constitutes acceptance of our <a href="
+"\"%(the_url)s\">User\n"
+"                Agreement\n"
+"                and Privacy\n"
+"                Policy\n"
+"                </a>."
+msgstr ""
+
+#: server/templates/starbase.html:147
+#, python-format
+msgid ""
+"Powered by <a href=\"https://github.com/ialbert/biostar-central\">Biostar</"
+"a>\n"
+"                version %(BIOSTAR_VERSION)s\n"
+"                "
+msgstr ""
+
+#: server/templates/starbase.html:155
+#, python-format
+msgid "Traffic: %(TRAFFIC)s users visited in the last hour"
+msgstr ""
+
+#: server/templates/test-banner.html:6
+msgid ""
+"This is site is used for testing! The public Biostar site can be accessed "
+"at: <a href=\"http://www.biostars.org\">http://www.biostars.org</a>"
+msgstr ""
+
+#: server/templates/user_details.html:9
+msgid "User:"
+msgstr ""
+
+#: server/templates/user_details.html:46
+msgid ""
+"Your portrait is loaded from <a href=\"http://www.gravatar.com\">Gravatar</"
+"a> based\n"
+"                        on your email. If you don't have a <a href=\"http://"
+"www.gravatar.com\">Gravatar</a> account\n"
+"                        your portait is\n"
+"                        an \"identicon\": an automatically generated, unique "
+"image."
+msgstr ""
+
+#: server/templates/user_details.html:60
+msgid "Reputation:"
+msgstr ""
+
+#: server/templates/user_details.html:63
+msgid "Status:"
+msgstr ""
+
+#: server/templates/user_details.html:66
+msgid "Location:"
+msgstr ""
+
+#: server/templates/user_details.html:70
+msgid "Website:"
+msgstr ""
+
+#: server/templates/user_details.html:79
+msgid "Twitter:"
+msgstr ""
+
+#: server/templates/user_details.html:89
+msgid "Scholar ID:"
+msgstr ""
+
+#: server/templates/user_details.html:96
+msgid "Last seen:"
+msgstr ""
+
+#: server/templates/user_details.html:99
+msgid "Joined:"
+msgstr ""
+
+#: server/templates/user_details.html:102
+msgid "Email:"
+msgstr ""
+
+#: server/templates/user_details.html:112
+msgid "My Tags:"
+msgstr ""
+
+#: server/templates/user_details.html:115
+msgid "Watched Tags:"
+msgstr ""
+
+#: server/templates/user_details.html:122
+msgid "Notifications:"
+msgstr ""
+
+#: server/templates/user_details.html:126
+msgid "Log in options:"
+msgstr ""
+
+#: server/templates/user_details.html:129
+msgid "Social Login"
+msgstr ""
+
+#: server/templates/user_details.html:133
+msgid "Profile settings:"
+msgstr ""
+
+#: server/templates/user_details.html:143
+msgid "ORCID profile:"
+msgstr ""
+
+#: server/templates/user_details.html:160
+msgid "Posts by"
+msgstr ""
+
+#: server/templates/user_details.html:178
+msgid "Latest awards to"
+msgstr ""
+
+#: server/templates/user_details.html:190
+msgid "For"
+msgstr ""
+
+#: server/templates/user_details.html:195
+msgid "No awards yet. Soon to come :-)"
+msgstr ""
+
+#: server/templates/user_edit.html:8
+msgid "User Edit"
+msgstr ""
+
+#: server/templates/user_list.html:19
+msgid "Enter name"
+msgstr ""
+
+#: server/templates/user_list.html:23
+msgid "Search user"
+msgstr ""
+
+#: server/templates/user_moderation_form.html:7
+msgid "Moderate:"
+msgstr ""
+
+#: server/templates/vote_list.html:28
+msgid "People voting on your posts"
+msgstr ""
+
+#: server/templates/account/login.html:16
+msgid "Quick Login"
+msgstr ""
+
+#: server/templates/account/login.html:20
+msgid ""
+"\n"
+"                            Click the name of a provider to log in."
+msgstr ""
+
+#: server/templates/account/login.html:31
+msgid ""
+"\n"
+"                        Our connection is used for authentication only.\n"
+"                        We can't access your timeline, see your friends or "
+"post on your behalf."
+msgstr ""
+
+#: server/templates/account/login.html:35
+msgid "Don't want to use social logins?"
+msgstr ""
+
+#: server/templates/account/login.html:36
+msgid "Sign up with an email!"
+msgstr ""
+
+#: server/templates/account/login.html:45
+msgid "Do you have an email based account? Log in below:"
+msgstr ""
+
+#: server/templates/account/login.html:54
+msgid "Email Login"
+msgstr ""
+
+#: server/templates/account/login.html:67
+msgid "Sign In"
+msgstr ""
+
+#: server/templates/account/login.html:70
+#: server/templates/socialaccount/signup.html:29
+msgid "Forgot Password?"
+msgstr ""
+
+#: server/templates/account/password_reset.html:6
+msgid "Forgot your password?"
+msgstr ""
+
+#: server/templates/account/password_reset.html:11
+#: server/templates/account/password_reset_done.html:12
+msgid "Password Reset"
+msgstr ""
+
+#: server/templates/account/password_reset.html:16
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send you "
+"an e-mail allowing you to reset it."
+msgstr ""
+
+#: server/templates/account/password_reset.html:21
+#: server/templates/socialaccount/signup.html:61
+msgid "Reset password"
+msgstr ""
+
+#: server/templates/account/password_reset.html:23
+#: server/templates/account/signup.html:33
+msgid "Back to login"
+msgstr ""
+
+#: server/templates/account/password_reset_done.html:6
+msgid "Password reset sent"
+msgstr ""
+
+#: server/templates/account/password_reset_done.html:21
+msgid ""
+"We have sent you an e-mail. Please contact us if you do not receive it "
+"within a few\n"
+"                    minutes."
+msgstr ""
+
+#: server/templates/account/password_reset_from_key.html:6
+#: server/templates/account/password_reset_from_key_done.html:6
+msgid "Change your password"
+msgstr ""
+
+#: server/templates/account/password_reset_from_key.html:13
+msgid "Bad Token"
+msgstr ""
+
+#: server/templates/account/password_reset_from_key.html:13
+msgid "Change Password"
+msgstr ""
+
+#: server/templates/account/password_reset_from_key.html:16
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.\n"
+"                    Please\n"
+"                    request a <a href=\"%(passwd_reset_url)s\">new password "
+"reset</a>."
+msgstr ""
+
+#: server/templates/account/password_reset_from_key.html:24
+msgid "change password"
+msgstr ""
+
+#: server/templates/account/password_reset_from_key.html:27
+#: server/templates/account/password_reset_from_key_done.html:12
+msgid "Your password is now changed."
+msgstr ""
+
+#: server/templates/account/password_reset_from_key_done.html:13
+msgid "Please log in"
+msgstr ""
+
+#: server/templates/account/signup.html:6
+#: server/templates/socialaccount/signup.html:6
+msgid "Sign Up."
+msgstr ""
+
+#: server/templates/account/signup.html:14
+msgid "Create Account"
+msgstr ""
+
+#: server/templates/account/signup.html:17
+#, python-format
+msgid ""
+"Do you want to use social logins?\n"
+"                        Go to the <a href=\"%(login_url)s\">Login page "
+"&raquo;"
+msgstr ""
+
+#: server/templates/account/signup.html:30
+#: server/templates/socialaccount/signup.html:27
+msgid "Sign Up"
+msgstr ""
+
+#: server/templates/account/email/email_confirmation_message.txt:1
+#, python-format
+msgid ""
+"\n"
+"\n"
+"Welcome to %(site_name)s!\n"
+"\n"
+"You are now one step closer to become a full member of our community.\n"
+"\n"
+"To verify your email please click on the link below.\n"
+"\n"
+"%(activate_url)s\n"
+"\n"
+msgstr ""
+
+#: server/templates/account/email/email_confirmation_subject.txt:3
+msgid "please confirm your e-mail address"
+msgstr ""
+
+#: server/templates/account/email/password_reset_key_message.txt:1
+#, python-format
+msgid ""
+"\n"
+"\n"
+"Hello.\n"
+"\n"
+"You're receiving this e-mail because you or someone else has\n"
+"requested a password reset for your user account at %(site_domain)s.\n"
+"\n"
+"Click the link below to reset your password.\n"
+"\n"
+"%(password_reset_url)s\n"
+"\n"
+"Ignore the message if you did not request this password reset.\n"
+"\n"
+"Thanks for using our site!\n"
+msgstr ""
+
+#: server/templates/account/messages/logged_in.txt:1
+#, python-format
+msgid ""
+"\n"
+"You have successfully signed in as <b>%(email)s</b>.\n"
+msgstr ""
+
+#: server/templates/account/messages/readme.txt:1
+msgid "Some of these files are empty to override default behaviors."
+msgstr ""
+
+#: server/templates/digest/daily_digest.html:2
+msgid "Biostar Daily Digest"
+msgstr ""
+
+#: server/templates/digest/daily_digest.html:4
+msgid "New Posts"
+msgstr ""
+
+#: server/templates/digest/daily_digest.html:8
+#: server/templates/digest/daily_digest.html:19
+#: server/templates/digest/daily_digest.html:30
+msgid "written by"
+msgstr ""
+
+#: server/templates/digest/daily_digest.html:15
+msgid "Updated Posts"
+msgstr ""
+
+#: server/templates/digest/daily_digest.html:26
+msgid "New Blog Posts"
+msgstr ""
+
+#: server/templates/digest/daily_digest.html:35
+#, python-format
+msgid "Biostars, home of %(post_count)s posts."
+msgstr ""
+
+#: server/templates/digest/daily_digest.txt:3
+#, python-format
+msgid "Biostar Daily Digest for %(start)s"
+msgstr ""
+
+#: server/templates/digest/daily_digest.txt:6
+msgid "Top posters:"
+msgstr ""
+
+#: server/templates/digest/daily_digest.txt:9
+msgid "Most Viewed New Posts"
+msgstr ""
+
+#: server/templates/digest/daily_digest.txt:12
+#: server/templates/digest/daily_digest.txt:19
+#: server/templates/planet/planet_entries.html:37
+#: server/templates/server_tags/post_actions.html:41
+#: server/templates/server_tags/post_actions.html:46
+#: server/templates/server_tags/post_count_box.html:59
+#: server/templates/server_tags/post_count_box.html:61
+#: server/templates/server_tags/sidebar_posts.html:11
+msgid "by"
+msgstr ""
+
+#: server/templates/digest/daily_digest.txt:12
+msgid "tagged:"
+msgstr ""
+
+#: server/templates/digest/daily_digest.txt:16
+msgid "Highest Rated Answers"
+msgstr ""
+
+#: server/templates/digest/daily_digest.txt:23
+msgid "Bioinformatics Planet"
+msgstr ""
+
+#: server/templates/digest/daily_digest.txt:29
+#, python-format
+msgid "Biostars, https://%(domain)s, %(count)s users, %(post_count)s posts."
+msgstr ""
+
+#: server/templates/digest/daily_digest.txt:30
+#, python-format
+msgid ""
+"\n"
+"---\n"
+"You've received this because your Biostar profile has the digest option "
+"turned on.\n"
+"\n"
+"To set your options click here: https://%(domain)s%%(digest_manage)s\n"
+"\n"
+"To un-subscribe click here: https://%(domain)s%%(digest_unsubscribe)s\n"
+"---\n"
+msgstr ""
+
+#: server/templates/digest/manager.html:8
+msgid "Subscription Manager"
+msgstr ""
+
+#: server/templates/flatpages/default.html:22
+msgid "Server Stats"
+msgstr ""
+
+#: server/templates/flatpages/default.html:24
+#, python-format
+msgid "Traffic: <b>%(TRAFFIC)s</b> users visited in the last hour."
+msgstr ""
+
+#: server/templates/flatpages/default.html:27
+#, python-format
+msgid ""
+"The site has <b>%(user_count)s</b> registered users that created\n"
+"                        <b>%(post_count)s</b> posts"
+msgstr ""
+
+#: server/templates/flatpages/default.html:31
+#, python-format
+msgid ""
+"These are distributed as <b>%(question_count)s</b>\n"
+"                        questions,<b> %(answer_count)s</b> answers\n"
+"                        and <b>%(comment_count)s</b> comments."
+msgstr ""
+
+#: server/templates/flatpages/default.html:39
+msgid "Site Admins"
+msgstr ""
+
+#: server/templates/flatpages/default.html:46
+msgid "Site Moderators"
+msgstr ""
+
+#: server/templates/flatpages/default.html:59
+msgid "Administrator access:"
+msgstr ""
+
+#: server/templates/flatpages/default.html:61
+msgid "Edit"
+msgstr ""
+
+#: server/templates/flatpages/flatpage_edit.html:8
+msgid "Update Flatpage"
+msgstr ""
+
+#: server/templates/flatpages/flatpage_edit.html:20
+msgid "Update"
+msgstr ""
+
+#: server/templates/messages/award_created.html:3
+#, python-format
+msgid ""
+"<b>Congratulations!</b> You have won the\n"
+"<b><a href=\"%(the_url)s\">%(name)s <i class=\"%(icon)s\"></i></a></b>\n"
+"badge for the notable accomplishment of: <em>%(desc)s</em>."
+msgstr ""
+
+#: server/templates/messages/award_created.html:7
+#, python-format
+msgid "You have earned this honor for: %(context)s"
+msgstr ""
+
+#: server/templates/messages/crossposted.html:2
+#, python-format
+msgid ""
+"<p>Hello %(name)s!</p>\n"
+"\n"
+"<p>It appears that your post has been cross-posted to another site: "
+"%(comment)s</p>\n"
+"\n"
+"<p>This is typically not recommended as it runs the risk of annoying people "
+"in both communities.</p>"
+msgstr ""
+
+#: server/templates/messages/duplicate_posts.html:1
+#, python-format
+msgid ""
+"\n"
+"<p>Hello %(name)s!</p>\n"
+"\n"
+"<p>Questions similar to yours can already be found at:</p>\n"
+msgstr ""
+
+#: server/templates/messages/duplicate_posts.html:11
+msgid ""
+"\n"
+"<p>\n"
+"    We have closed your question to allow us to keep similar content in the "
+"same thread.\n"
+"</p>\n"
+"\n"
+"<p>\n"
+"    If you disagree with this please tell us why in a reply below. We'll be "
+"happy to talk about it.\n"
+"</p>\n"
+"\n"
+"<p>Cheers!</p>\n"
+msgstr ""
+
+#: server/templates/messages/new_user_welcome.html:1
+#, python-format
+msgid ""
+"Hello <b>%(name)s</b>! Welcome to Biostar <i class=\"fa fa-globe\"></i>!\n"
+"\n"
+"<p style=\"padding-top:10px;\">\n"
+"    We hope you'll find the site useful and our community friendly.\n"
+"</p>\n"
+"<p>\n"
+"    We encourage you to participate:\n"
+"    <b>upvote</b> posts that you like, ask <b>questions</b>, write "
+"<b>comments</b> and <b>answers</b>, follow posts,\n"
+"    bookmark content. You can keep up with the lates content via email (see "
+"your user account settings) or RSS feeds.\n"
+"</p>\n"
+"<p>\n"
+"    Together, by sharing the know-how, personal experiences, tips and tricks "
+"of the trade\n"
+"    we can become more productive and successful as scientists.\n"
+"</p>"
+msgstr ""
+
+#: server/templates/messages/offtopic_posts.html:1
+#, python-format
+msgid ""
+"<p>Hello %(name)s!</p>\n"
+"\n"
+"<p>We believe that this post does not fit the main topic of this site. </p>\n"
+"\n"
+"<p>%(comment)s</p>\n"
+"\n"
+"<p>For this reason we have closed your question. This allows us to keep the "
+"site focused\n"
+"on the topics that the community can help with. </p>\n"
+"\n"
+"<p>If you disagree please tell us why in a reply below, we'll be happy to "
+"talk about  it.</p>\n"
+"\n"
+"<p>Cheers!</p>"
+msgstr ""
+
+#: server/templates/messages/post_created.html:1
+#, python-format
+msgid ""
+"Activity on a post you are following on <a href=\"http://%(domain)s\">"
+"%(site_name)s</a>\n"
+"<p>\n"
+"    User <a href=\"http://%(domain)s%(user_url)s\">%(user.name)s</a> wrote "
+"<a href=\"http://%(domain)s%(post_url)s\">%(post_type)s: %(title)s</a>:\n"
+"</p>\n"
+"<p>\n"
+"    %(htnl)s\n"
+"</p>\n"
+"<hr>\n"
+"<p style=\"color:#666666\">\n"
+"    You may reply via email or visit http://%(domain)s%(post_url)s\n"
+"</p>"
+msgstr ""
+
+#: server/templates/messages/post_created.txt:1
+#, python-format
+msgid ""
+"%(name)s posted the %(type)s: \"%(title)s\":\n"
+"\n"
+"%(text)s\n"
+"\n"
+"---\n"
+"See the full post at: http://%(domain)s%(post_url)s"
+msgstr ""
+
+#: server/templates/messages/post_created.txt:7
+msgid "Replying to this email will post an answer to the question above."
+msgstr ""
+
+#: server/templates/messages/post_created.txt:8
+msgid "Replying to this email will post a comment to the answer above."
+msgstr ""
+
+#: server/templates/messages/post_created_short.html:1
+#, python-format
+msgid ""
+"<a href=\"%(user_url)s\">%(name)s</a> wrote on\n"
+"<a href=\"%(post_url)s\">%(post_title)s</a> :\n"
+"%(peek)s"
+msgstr ""
+
+#: server/templates/planet/planet_entries.html:18
+#, python-format
+msgid ""
+"Blog posts collected by the Biostar aggregator.\n"
+"                To follow subscribe to the <a class=\"alert-link\" href="
+"\"%(the_url)s\">planet\n"
+"                feed <i class=\"fa fa-rss\"></i></a>"
+msgstr ""
+
+#: server/templates/planet/planet_entries.html:36
+#: server/templates/server_tags/post_actions.html:45
+#: server/templates/server_tags/post_count_box.html:59
+msgid "written"
+msgstr ""
+
+#: server/templates/planet/planet_entries.html:52
+msgid "Planet Feeds"
+msgstr ""
+
+#: server/templates/planet/planet_entries.html:59
+#, python-format
+msgid "%(count)s posts, last updated %(updated_date)s"
+msgstr ""
+
+#: server/templates/search/search.html:9
+msgid ""
+" Classic search. Type your query and press enter. Go to the main page\n"
+"            for dynamic search."
+msgstr ""
+
+#: server/templates/search/search.html:19
+msgid "Search!"
+msgstr ""
+
+#: server/templates/search/search.html:45
+msgid "No results found."
+msgstr ""
+
+#: server/templates/search/indexes/planet/blogpost_text.txt:2
+msgid "BLOG:"
+msgstr ""
+
+#: server/templates/server_tags/comment_body.html:7
+#: server/templates/server_tags/post_body.html:28
+msgid "Upvote!"
+msgstr ""
+
+#: server/templates/server_tags/nav_bar.html:12
+#: server/templates/server_tags/nav_bar.html:32
+msgid "Planet"
+msgstr ""
+
+#: server/templates/server_tags/nav_bar.html:23
+msgid "View Posts"
+msgstr ""
+
+#: server/templates/server_tags/nav_bar.html:40
+msgid "Home"
+msgstr ""
+
+#: server/templates/server_tags/nav_bar.html:50
+msgid "You"
+msgstr ""
+
+#: server/templates/server_tags/nav_bar.html:55
+#: server/templates/server_tags/nav_bar.html:143
+msgid "My Posts"
+msgstr ""
+
+#: server/templates/server_tags/nav_bar.html:58
+msgid "My Messages"
+msgstr ""
+
+#: server/templates/server_tags/nav_bar.html:62
+msgid "My Bookmarks"
+msgstr ""
+
+#: server/templates/server_tags/nav_bar.html:66
+#: server/templates/server_tags/nav_bar.html:171
+#: server/templates/server_tags/nav_bar.html:203
+msgid "New Post"
+msgstr ""
+
+#: server/templates/server_tags/nav_bar.html:70
+msgid "Log Out"
+msgstr ""
+
+#: server/templates/server_tags/nav_bar.html:76
+msgid "Log In"
+msgstr ""
+
+#: server/templates/server_tags/nav_bar.html:104
+msgid "Logout"
+msgstr ""
+
+#: server/templates/server_tags/nav_bar.html:107
+#: server/templates/server_tags/nav_bar.html:180
+msgid "about"
+msgstr ""
+
+#: server/templates/server_tags/nav_bar.html:107
+#: server/templates/server_tags/nav_bar.html:180
+msgid "faq"
+msgstr ""
+
+#: server/templates/server_tags/nav_bar.html:108
+#: server/templates/server_tags/nav_bar.html:181
+msgid "rss"
+msgstr ""
+
+#: server/templates/server_tags/nav_bar.html:116
+#: server/templates/server_tags/nav_bar.html:189
+msgid "Community"
+msgstr ""
+
+#: server/templates/server_tags/nav_bar.html:150
+msgid "My Tags"
+msgstr ""
+
+#: server/templates/server_tags/nav_bar.html:157
+msgid "Following"
+msgstr ""
+
+#: server/templates/server_tags/nav_bar.html:164
+msgid "Bookmarks"
+msgstr ""
+
+#: server/templates/server_tags/nav_bar.html:196
+msgid "User Login"
+msgstr ""
+
+#: server/templates/server_tags/page_bar.html:8
+#: server/templates/server_tags/page_bar.html:10
+#: server/templates/server_tags/page_bar_sort_posts.html:25
+#: server/templates/server_tags/page_bar_sort_posts.html:27
+#: server/templates/server_tags/page_bar_sort_users.html:25
+#: server/templates/server_tags/page_bar_sort_users.html:27
+msgid "prev"
+msgstr ""
+
+#: server/templates/server_tags/page_bar.html:14
+#: server/templates/server_tags/page_bar_sort_posts.html:31
+msgid "results"
+msgstr ""
+
+#: server/templates/server_tags/page_bar.html:15
+#: server/templates/server_tags/page_bar_sort_posts.html:32
+#: server/templates/server_tags/page_bar_sort_users.html:32
+msgid "of"
+msgstr ""
+
+#: server/templates/server_tags/page_bar.html:19
+#: server/templates/server_tags/page_bar.html:21
+#: server/templates/server_tags/page_bar_sort_posts.html:36
+#: server/templates/server_tags/page_bar_sort_posts.html:38
+#: server/templates/server_tags/page_bar_sort_users.html:36
+#: server/templates/server_tags/page_bar_sort_users.html:38
+msgid "next"
+msgstr ""
+
+#: server/templates/server_tags/page_bar_sort_posts.html:10
+#: server/templates/server_tags/page_bar_sort_users.html:10
+msgid "Limit to:"
+msgstr ""
+
+#: server/templates/server_tags/page_bar_sort_posts.html:46
+#: server/templates/server_tags/page_bar_sort_users.html:46
+msgid "Sort by:"
+msgstr ""
+
+#: server/templates/server_tags/page_bar_sort_users.html:31
+msgid "users"
+msgstr ""
+
+#: server/templates/server_tags/post_actions.html:6
+msgid "ADD"
+msgstr ""
+
+#: server/templates/server_tags/post_actions.html:8
+msgid "link"
+msgstr ""
+
+#: server/templates/server_tags/post_actions.html:10
+msgid "edit"
+msgstr ""
+
+#: server/templates/server_tags/post_actions.html:11
+msgid "moderate"
+msgstr ""
+
+#: server/templates/server_tags/post_actions.html:12
+msgid "bookmark"
+msgstr ""
+
+#: server/templates/server_tags/post_actions.html:22
+msgid "Follow via"
+msgstr ""
+
+#: server/templates/server_tags/post_actions.html:24
+msgid "Not following"
+msgstr ""
+
+#: server/templates/server_tags/post_actions.html:30
+msgid "Follow via messages"
+msgstr ""
+
+#: server/templates/server_tags/post_actions.html:31
+msgid "Follow via email"
+msgstr ""
+
+#: server/templates/server_tags/post_actions.html:32
+msgid "Do not follow"
+msgstr ""
+
+#: server/templates/server_tags/post_actions.html:39
+msgid "modified"
+msgstr ""
+
+#: server/templates/server_tags/post_body.html:34
+msgid "Bookmark!"
+msgstr ""
+
+#: server/templates/server_tags/post_body.html:40
+msgid "Accept!"
+msgstr ""
+
+#: server/templates/server_tags/post_count_box.html:12
+msgid "vote"
+msgstr ""
+
+#: server/templates/server_tags/post_count_box.html:16
+#: server/templates/server_tags/post_count_box.html:35
+msgid "answer"
+msgstr ""
+
+#: server/templates/server_tags/post_count_box.html:25
+msgid "follow"
+msgstr ""
+
+#: server/templates/server_tags/post_count_box.html:61
+msgid "updated"
+msgstr ""
+
+#: server/templates/server_tags/post_user_box.html:15
+msgid "wrote:"
+msgstr ""
+
+#: server/templates/server_tags/search_bar.html:10
+msgid "or"
+msgstr ""
+
+#: server/templates/server_tags/search_bar.html:11
+msgid "Classic search"
+msgstr ""
+
+#: server/templates/server_tags/sidebar_awards.html:6
+msgid "Recent Awards"
+msgstr ""
+
+#: server/templates/server_tags/sidebar_awards.html:12
+msgid "to"
+msgstr ""
+
+#: server/templates/server_tags/sidebar_locations.html:6
+msgid "Recent Locations"
+msgstr ""
+
+#: server/templates/server_tags/sidebar_posts.html:6
+msgid "Recent Replies"
+msgstr ""
+
+#: server/templates/server_tags/sidebar_votes.html:5
+msgid "Recent Votes"
+msgstr ""
+
+#: server/templates/server_tags/user_box.html:11
+msgid "visited"
+msgstr ""
+
+#: server/templates/server_tags/user_box.html:13
+msgid "joined"
+msgstr ""
+
+#: server/templates/socialaccount/authentication_error.html:5
+msgid "Authentication Error"
+msgstr ""
+
+#: server/templates/socialaccount/authentication_error.html:11
+msgid "Social Network Login Failure"
+msgstr ""
+
+#: server/templates/socialaccount/authentication_error.html:13
+msgid ""
+"An error occurred while attempting to login via your social network account."
+msgstr ""
+
+#: server/templates/socialaccount/connections.html:6
+msgid "Social Accounts"
+msgstr ""
+
+#: server/templates/socialaccount/connections.html:13
+msgid "Connect account"
+msgstr ""
+
+#: server/templates/socialaccount/connections.html:25
+msgid "Click a link to connect that provider to your account"
+msgstr ""
+
+#: server/templates/socialaccount/connections.html:33
+msgid "Disconnect accounts"
+msgstr ""
+
+#: server/templates/socialaccount/connections.html:34
+msgid ""
+"To disconnect an account select the account from below then click the remove "
+"button"
+msgstr ""
+
+#: server/templates/socialaccount/connections.html:62
+msgid "Disconnect"
+msgstr ""
+
+#: server/templates/socialaccount/login_cancelled.html:5
+msgid "Login Cancelled"
+msgstr ""
+
+#: server/templates/socialaccount/login_cancelled.html:11
+msgid "Social Network Login Cancel"
+msgstr ""
+
+#: server/templates/socialaccount/login_cancelled.html:12
+msgid "The login has been cancelled."
+msgstr ""
+
+#: server/templates/socialaccount/signup.html:12
+#, python-format
+msgid ""
+"Signing up with\n"
+"                %(provider_name)s"
+msgstr ""
+
+#: server/templates/socialaccount/signup.html:16
+#, python-format
+msgid ""
+"You are about to use\n"
+"                    your %(provider_name)s account\n"
+"                    to login to\n"
+"                    %(site_name)s. As a final step, please complete the "
+"following form:"
+msgstr ""
+
+#: server/templates/socialaccount/signup.html:37
+msgid "It seems that there is already an account with the email sent by"
+msgstr ""
+
+#: server/templates/socialaccount/signup.html:44
+msgid "Your mission, should you choose to accept it:"
+msgstr ""
+
+#: server/templates/socialaccount/signup.html:48
+msgid "Reset your password below."
+msgstr ""
+
+#: server/templates/socialaccount/signup.html:49
+msgid "Log into the site with the new password."
+msgstr ""
+
+#: server/templates/socialaccount/signup.html:50
+msgid "Connect your social account from your user account page."
+msgstr ""
+
+#: server/templates/socialaccount/signup.html:55
+msgid ""
+"Once the accounts have been connected the login will work on all devices."
+msgstr ""

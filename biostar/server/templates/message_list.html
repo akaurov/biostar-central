@@ -1,6 +1,7 @@
 {% extends "starbase.html" %}
 {% load server_tags %}
 {% load humanize %}
+{% load i18n %}
 
 {% block content %}
 
@@ -13,7 +14,7 @@
 
             {% for message in objects %}
                 <div class="stripe unread {{ message.unread }}">
-                    {{ message.sent_at|timesince }} ago: {{ message.body.text|safe }}
+                    {{ message.sent_at|timesince }} {% trans "ago:" %} {{ message.body.text|safe }}
                 </div>
 
 
@@ -22,7 +23,7 @@
         </div>
 
         <div class="col-md-3 sidebar">
-            <div class="head">Messages by</div>
+            <div class="head">{% trans "Messages by" %}</div>
             {% sidebar_users people %}
         </div>
     </div>

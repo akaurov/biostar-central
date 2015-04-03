@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block page_title %}
-    Sign Up.
+    {% trans "Sign Up." %}
 {% endblock %}
 {% block content %}
     <div class="row">
@@ -14,8 +14,8 @@
                     <h3 class="panel-title">{% trans "Create Account" %}</h3>
                 </div>
                 <div class="panel-body">
-                    <div>Do you want to use social logins?
-                        Go to the <a href="{{ login_url }}">Login page &raquo;</a>
+                    <div>{% blocktrans %}Do you want to use social logins?
+                        Go to the <a href="{{ login_url }}">Login page &raquo;{% endblocktrans %}</a>
                     </div>
                     <form role="form" class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
                         {% csrf_token %}

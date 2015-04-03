@@ -4,6 +4,7 @@ from django.conf import settings
 import hmac, logging, re
 from datetime import timedelta
 from django.contrib.auth import authenticate, login, logout
+from django.utils.translation import ugettext_lazy as _
 from biostar.apps.users.models import User, Profile
 from biostar import const
 from django.core.cache import cache
@@ -154,7 +155,7 @@ class Visit(object):
         # Suspended users are logged out immediately.
         if user.is_authenticated() and user.is_suspended:
             logout(request)
-            messages.error(request, 'Sorry, this account has been suspended. Please contact the administrators.')
+            messages.error(request, _('Sorry, this account has been suspended. Please contact the administrators.'))
 
         # Add attributes to anonymous users.
         if not user.is_authenticated():
@@ -164,7 +165,7 @@ class Visit(object):
 
             # Check external logins.
             if settings.EXTERNAL_AUTH and valid_external_login(request):
-                messages.success(request, "Login completed")
+                messages.success(request, _("Login completed"))
 
             # We do this to detect when an anonymous session turns into a logged in one.
             if ANON_USER not in session:

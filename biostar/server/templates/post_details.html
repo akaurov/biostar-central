@@ -2,6 +2,7 @@
 {% load server_tags %}
 {% load cache %}
 {% load more_like_this %}
+{% load i18n %}
 
 {% block page_title %}
     {{ post.title }}
@@ -39,31 +40,31 @@
                     {#  Anonymous users. #}
                     {% if not user.is_authenticated %}
                         <div class="alert alert-info">
-                            Please <a href="{% url 'login' %}">log in</a> to add an answer.
+                            {% url 'login' as the_url %}{% blocktrans %}Please <a href="{{ the_url }}">log in</a> to add an answer.{% endblocktrans %}
                         </div>
                     {% endif %}
 
                     {#  Closed posts cannot get more answers #}
                     {% if not post.is_open %}
                         <div class="alert alert-warning">
-                            The thread is closed. No new answers may be added.
+                            {% trans "The thread is closed. No new answers may be added." %}
                         </div>
                     {% endif %}
 
                     {#  Authenticated users on an open post #}
                     {% if user.is_authenticated and post.is_open %}
 
-                        <h3>Add your answer</h3>
+                        <h3>{% trans "Add your answer" %}</h3>
 
                         <div class="alert alert-success">
 
-                            <p><strong>Note:</strong> Answers should respond to the original question on the
-                                top!
+                            <p>{% blocktrans %}<strong>Note:</strong> Answers should respond to the original question on the
+                                top!{% endblocktrans %}
                             </p>
 
                             <p>
-                                Use the comments
-                                to discuss an answer, ask for clarifications, request more details, etc.
+                                {% trans "Use the comments
+                                to discuss an answer, ask for clarifications, request more details, etc." %}
                             </p>
                         </div>
 
@@ -74,7 +75,7 @@
                                 <textarea class="textarea form-control" cols="40" id="answerbox" name="content"
                                           rows="10"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-success">Add Answer</button>
+                            <button type="submit" class="btn btn-success">{% trans "Add Answer" %}</button>
 
                         </form>
                     {% endif %}
@@ -83,7 +84,7 @@
         </div>
         <div class="col-xs-12 col-md-3 sidebar">
             {% cache 600 "similar" post.id %}
-                <h4>Similar posts &bull; <a href="{% url 'search-page' %}">Search &raquo;</a></h4>
+                <h4>{% trans "Similar posts" %} &bull; <a href="{% url 'search-page' %}">{% trans "Search" %} &raquo;</a></h4>
 
                 {% more_like_this post as related limit 25 %}
 
@@ -105,7 +106,7 @@
 
                         {% include "banners/sidebar.html" %}
 
-                        <li>Nothing matches yet.</li>
+                        <li>{% trans "Nothing matches yet." %}</li>
 
                     {% endfor %}
                 </ul>
@@ -114,7 +115,7 @@
 
         {% if easier_questions %}
             <div class="col-xs-12 col-md-3 sidebar">
-                <h4>Easier questions &bull;</h4>
+                <h4>{% trans "Easier questions" %} &bull;</h4>
                 <ul class="more-like-this">
                     {% for rel_post in easier_questions %}
                         <li>
@@ -126,7 +127,7 @@
         {% endif %}
         {% if harder_questions %}
             <div class="col-xs-12 col-md-3 sidebar">
-                <h4>Harder questions &bull;</h4>
+                <h4>{% trans "Harder questions" %} &bull;</h4>
                 <ul class="more-like-this">
                     {% for rel_post in harder_questions %}
                         <li>
@@ -138,7 +139,7 @@
         {% endif %}
         {% if common_questions %}
             <div class="col-xs-12 col-md-3 sidebar">
-                <h4>Common questions &bull;</h4>
+                <h4>{% trans "Common questions" %} &bull;</h4>
                 <ul class="more-like-this">
                     {% for rel_post in common_questions %}
                         <li>
@@ -150,7 +151,7 @@
         {% endif %}
         {% if special_questions %}
             <div class="col-xs-12 col-md-3 sidebar">
-                <h4>Special questions &bull;</h4>
+                <h4>{% trans "Special questions" %} &bull;</h4>
                 <ul class="more-like-this">
                     {% for rel_post in special_questions %}
                         <li>

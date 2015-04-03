@@ -1,10 +1,11 @@
 {% extends "starbase.html" %}
 {% load server_tags %}
 {% load humanize %}
+{% load i18n %}
 {% load crispy_forms_tags %}
 
 {% block page_title %}
-    Subscription Manager
+    {% trans "Subscription Manager" %}
 {% endblock %}
 
 {% block content %}

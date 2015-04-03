@@ -136,10 +136,10 @@ class Post(models.Model):
     QUESTION, ANSWER, JOB, FORUM, PAGE, BLOG, COMMENT, DATA, TUTORIAL, BOARD, TOOL, NEWS = range(12)
 
     TYPE_CHOICES = [
-        (QUESTION, "Question"), (ANSWER, "Answer"), (COMMENT, "Comment"),
-        (JOB, "Job"), (FORUM, "Forum"), (TUTORIAL, "Tutorial"),
-        (DATA, "Data"), (PAGE, "Page"), (TOOL, "Tool"), (NEWS, "News"),
-        (BLOG, "Blog"), (BOARD, "Bulletin Board")
+        (QUESTION, _("Question")), (ANSWER, _("Answer")), (COMMENT, _("Comment")),
+        (JOB, _("Job")), (FORUM, _("Forum")), (TUTORIAL, _("Tutorial")),
+        (DATA, _("Data")), (PAGE, _("Page")), (TOOL, _("Tool")), (NEWS, _("News")),
+        (BLOG, _("Blog")), (BOARD, _("Bulletin Board"))
     ]
 
     TOP_LEVEL = set((QUESTION, JOB, FORUM, PAGE, BLOG, DATA, TUTORIAL, TOOL, NEWS, BOARD))
@@ -399,8 +399,8 @@ class RelatedPosts(models.Model):
     EASIER, HARDER, COMMON, SPECIAL = range(4)
 
     RELATION_TYPES = [
-        (EASIER, "Easier"), (HARDER, "Harder"),
-        (COMMON, "Common"), (SPECIAL, "Special"),
+        (EASIER, _("Easier")), (HARDER, _("Harder")),
+        (COMMON, _("Common")), (SPECIAL, _("Special")),
     ]
 
     post = models.ForeignKey(Post, limit_choices_to={'type': 0}, related_name='related_post')

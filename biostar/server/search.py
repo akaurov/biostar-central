@@ -10,6 +10,7 @@ from biostar.server.views import BaseListMixin
 from ajax import ajax_error, ajax_success, ajax_error_wrapper, json_response
 from django.conf.urls import patterns
 from django.contrib.sitemaps import FlatPageSitemap, GenericSitemap
+from django.utils.translation import ugettext_lazy as _
 from biostar.apps.posts.models import Post, Tag
 from biostar.apps.planet.models import BlogPost
 import logging
@@ -53,7 +54,7 @@ class Search(BaseListMixin):
     template_name = "search/search.html"
     paginate_by = settings.PAGINATE_BY
     context_object_name = "results"
-    page_title = "Search"
+    page_title = _("Search")
 
     def get_queryset(self):
         self.q = self.request.GET.get('q', '')

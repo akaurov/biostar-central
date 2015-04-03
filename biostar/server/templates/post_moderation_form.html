@@ -1,8 +1,10 @@
 {% load humanize %}
+{% load i18n %}
 {% load crispy_forms_tags %}
+
 <div class="alert alert-warning">
 
-    <h4>Moderating {{ post.get_type_display }}: {{ post.title }}</h4>
+    <h4>{% trans "Moderating" %} {{ post.get_type_display }}: {{ post.title }}</h4>
 
     {% crispy form %}
 

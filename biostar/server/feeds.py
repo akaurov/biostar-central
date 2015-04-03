@@ -9,6 +9,7 @@ from biostar.apps.planet.models import BlogPost
 
 from django.conf import settings
 from django.contrib.sites.models import Site
+from django.utils.translation import ugettext_lazy as _
 from datetime import datetime, timedelta
 import bleach
 
@@ -34,8 +35,8 @@ class PlanetFeed(Feed):
     "Latest posts"
     link = "/"
     FEED_COUNT = 50
-    title = "%s Planet!" % SITE_NAME
-    description = "Latest 50 posts of the %s" % title
+    title = _("%s Planet!") % SITE_NAME
+    description = _("Latest 50 posts of the %s") % title
 
     def item_title(self, item):
         try:
@@ -58,8 +59,8 @@ class PlanetFeed(Feed):
 class PostBase(Feed):
     "Forms the base class to any feed producing posts"
     link = "/"
-    title = "title"
-    description = "description"
+    title = _("title")
+    description = _("description")
 
     def item_title(self, item):
         if item.type != Post.QUESTION:
@@ -78,8 +79,8 @@ class PostBase(Feed):
 
 class LatestFeed(PostBase):
     "Latest posts"
-    title = "%s latest!" % SITE_NAME
-    description = "Latest 25 posts from the %s" % title
+    title = _("%s latest!") % SITE_NAME
+    description = _("Latest 25 posts from the %s") % title
 
     def items(self):
         posts = Post.objects.filter(type__in=Post.TOP_LEVEL).exclude(type=Post.BLOG).order_by('-creation_date')
@@ -87,8 +88,8 @@ class LatestFeed(PostBase):
 
 class PostTypeFeed(PostBase):
     TYPE_MAP = {
-        'job': Post.JOB, 'blog': Post.BLOG, 'question': Post.QUESTION,
-        'forum': Post.FORUM, 'page': Post.PAGE
+        _('job'): Post.JOB, _('blog'): Post.BLOG, _('question'): Post.QUESTION,
+        _('forum'): Post.FORUM, _('page'): Post.PAGE
     }
 
     def get_object(self, request, text):
@@ -98,10 +99,10 @@ class PostTypeFeed(PostBase):
 
     def description(self, obj):
         code, text = obj
-        return "Activity on posts  %s" % text
+        return _("Activity on posts  %s") % text
 
     def title(self, obj):
-        return "Post Activity"
+        return _("Post Activity")
 
     def items(self, obj):
         codes, text = obj
@@ -114,10 +115,10 @@ class PostFeed(PostBase):
         return text
 
     def description(self, obj):
-        return "Activity on posts  %s" % obj
+        return _("Activity on posts  %s") % obj
 
     def title(self, obj):
-        return "Post Activity"
+        return _("Post Activity")
 
     def items(self, text):
         ids = split(text)
@@ -133,10 +134,10 @@ class TagFeed(PostBase):
         return ",".join(elems)
 
     def description(self, obj):
-        return "Posts that match  %s" % obj
+        return _("Posts that match  %s") % obj
 
     def title(self, obj):
-        return "Post Feed"
+        return _("Post Feed")
 
     def items(self, obj):
         posts = Post.objects.tag_search(obj)
@@ -149,10 +150,10 @@ class UserFeed(PostBase):
         return text
 
     def description(self, obj):
-        return "Posts for users that match  %s" % obj
+        return _("Posts for users that match  %s") % obj
 
     def title(self, obj):
-        return "User Feed"
+        return _("User Feed")
 
     def items(self, text):
         ids = split(text)

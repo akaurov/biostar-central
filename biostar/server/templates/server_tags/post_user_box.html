@@ -1,5 +1,6 @@
 {% load humanize %}
 {% load server_tags %}
+{% load i18n %}
 
 {#  This is very similar to userbox but needs different positioning #}
 
@@ -11,5 +12,5 @@
 </div>
 
 <div class="box text-center visible-sm visible-xs">
-    <div class="uname">{% userlink user %} wrote:</div>
+    <div class="uname">{% userlink user %} {% trans "wrote:" %}</div>
 </div>

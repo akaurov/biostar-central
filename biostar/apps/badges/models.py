@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.core import mail
+from django.utils.translation import ugettext_lazy as _
 import logging
 
 logger = logging.getLogger(__name__)
@@ -10,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 class Badge(models.Model):
     BRONZE, SILVER, GOLD = range(3)
-    CHOICES = ((BRONZE, 'Bronze'), (SILVER, 'Silver'), (GOLD, 'Gold'))
+    CHOICES = ((BRONZE, _('Bronze')), (SILVER, _('Silver')), (GOLD, _('Gold')))
 
     # The name of the badge.
     name = models.CharField(max_length=50)

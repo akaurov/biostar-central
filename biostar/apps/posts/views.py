@@ -8,6 +8,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Fieldset, Div, Submit, ButtonHolder
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
 from . import auth
 from braces.views import LoginRequiredMixin
@@ -31,55 +32,55 @@ def valid_title(text):
     "Validates form input for tags"
     text = text.strip()
     if not text:
-        raise ValidationError('Please enter a title')
+        raise ValidationError(_('Please enter a title'))
 
     if len(text) < 10:
-        raise ValidationError('The title is too short')
+        raise ValidationError(_('The title is too short'))
 
     words = text.split(" ")
     if len(words) < 3:
-        raise ValidationError('More than two words please.')
+        raise ValidationError(_('More than two words please.'))
 
 
 def valid_tag(text):
     "Validates form input for tags"
     text = text.strip()
     if not text:
-        raise ValidationError('Please enter at least one tag')
+        raise ValidationError(_('Please enter at least one tag'))
     if len(text) > 50:
-        raise ValidationError('Tag line is too long (50 characters max)')
+        raise ValidationError(_('Tag line is too long (50 characters max)'))
     words = text.split(",")
     if len(words) > 5:
-        raise ValidationError('You have too many tags (5 allowed)')
+        raise ValidationError(_('You have too many tags (5 allowed)'))
 
 
 class LongForm(forms.Form):
     FIELDS = "title content post_type tag_val".split()
 
-    POST_CHOICES = [(Post.QUESTION, "Question"),
-                    (Post.JOB, "Job Ad"),
-                    (Post.TUTORIAL, "Tutorial"), (Post.TOOL, "Tool"),
-                    (Post.FORUM, "Forum"), (Post.NEWS, "News"),
-                    (Post.BLOG, "Blog"), (Post.PAGE, "Page")]
+    POST_CHOICES = [(Post.QUESTION, _("Question")),
+                    (Post.JOB, _("Job Ad")),
+                    (Post.TUTORIAL, _("Tutorial")), (Post.TOOL, _("Tool")),
+                    (Post.FORUM, _("Forum")), (Post.NEWS, _("News")),
+                    (Post.BLOG, _("Blog")), (Post.PAGE, _("Page"))]
 
     title = forms.CharField(
-        label="Post Title",
+        label=_("Post Title"),
         max_length=200, min_length=10, validators=[valid_title],
-        help_text="Descriptive titles promote better answers.")
+        help_text=_("Descriptive titles promote better answers."))
 
     post_type = forms.ChoiceField(
-        label="Post Type",
-        choices=POST_CHOICES, help_text="Select a post type: Question, Forum, Job, Blog")
+        label=_("Post Type"),
+        choices=POST_CHOICES, help_text=_("Select a post type: Question, Forum, Job, Blog"))
 
     tag_val = forms.CharField(
-        label="Post Tags",
+        label=_("Post Tags"),
         required=True, validators=[valid_tag],
-        help_text="Choose one or more tags to match the topic. To create a new tag just type it in and press ENTER.",
+        help_text=_("Choose one or more tags to match the topic. To create a new tag just type it in and press ENTER."),
     )
 
     content = forms.CharField(widget=forms.Textarea,
                               min_length=80, max_length=15000,
-                              label="Enter your post below")
+                              label=_("Enter your post below"))
 
     def __init__(self, *args, **kwargs):
         super(LongForm, self).__init__(*args, **kwargs)
@@ -110,7 +111,7 @@ class RelatedForm(forms.ModelForm):
         widget=AutoHeavySelect2Widget(
             select2_options={
                 'width': '30em',
-                'placeholder': u'Post',
+                'placeholder': _('Post'),
                 'minimumInputLength': 1,
             }
         )
@@ -161,18 +162,18 @@ def external_post_handler(request):
     name = request.REQUEST.get("name")
 
     if not name:
-        messages.error(request, "Incorrect request. The name parameter is missing")
+        messages.error(request, _("Incorrect request. The name parameter is missing"))
         return HttpResponseRedirect(home)
 
     try:
         secret = dict(settings.EXTERNAL_AUTH).get(name)
     except Exception, exc:
         logger.error(exc)
-        messages.error(request, "Incorrect EXTERNAL_AUTH settings, internal exception")
+        messages.error(request, _("Incorrect EXTERNAL_AUTH settings, internal exception"))
         return HttpResponseRedirect(home)
 
     if not secret:
-        messages.error(request, "Incorrect EXTERNAL_AUTH, no KEY found for this name")
+        messages.error(request, _("Incorrect EXTERNAL_AUTH, no KEY found for this name"))
         return HttpResponseRedirect(home)
 
     content = request.REQUEST.get("content")
@@ -181,7 +182,7 @@ def external_post_handler(request):
     digest2 = hmac.new(secret, content).hexdigest()
 
     if digest1 != digest2:
-        messages.error(request, "digests does not match")
+        messages.error(request, _("digests does not match"))
         return HttpResponseRedirect(home)
 
     # auto submit the post
@@ -269,7 +270,7 @@ class NewPost(LoginRequiredMixin, FormView):
         # Triggers a new post save.
         post.add_tags(post.tag_val)
 
-        messages.success(request, "%s created" % post.get_type_display())
+        messages.success(request, _("%s created") % post.get_type_display())
         return HttpResponseRedirect(post.get_absolute_url())
 
 
@@ -299,7 +300,7 @@ class NewAnswer(LoginRequiredMixin, FormView):
         try:
             parent = Post.objects.get(pk=pid)
         except ObjectDoesNotExist, exc:
-            messages.error(request, "The post does not exist. Perhaps it was deleted")
+            messages.error(request, _("The post does not exist. Perhaps it was deleted"))
             return HttpResponseRedirect("/")
 
         # Validating the form.
@@ -318,7 +319,7 @@ class NewAnswer(LoginRequiredMixin, FormView):
             parent=parent,
         )
 
-        messages.success(request, "%s created" % post.get_type_display())
+        messages.success(request, _("%s created") % post.get_type_display())
         post.save()
 
         return HttpResponseRedirect(post.get_absolute_url())
@@ -346,7 +347,7 @@ class EditPost(LoginRequiredMixin, FormView):
 
         # Check and exit if not a valid edit.
         if not post.is_editable:
-            messages.error(request, "This user may not modify the post")
+            messages.error(request, _("This user may not modify the post"))
             return HttpResponseRedirect(reverse("home"))
 
         initial = dict(title=post.title, content=post.content, post_type=post.type, tag_val=post.tag_val)
@@ -366,12 +367,12 @@ class EditPost(LoginRequiredMixin, FormView):
         # For historical reasons we had posts with iframes
         # these cannot be edited because the content would be lost in the front end
         if "<iframe" in post.content:
-            messages.error(request, "This post is not editable because of an iframe! Contact if you must edit it")
+            messages.error(request, _("This post is not editable because of an iframe! Contact if you must edit it"))
             return HttpResponseRedirect(post.get_absolute_url())
 
         # Check and exit if not a valid edit.
         if not post.is_editable:
-            messages.error(request, "This user may not modify the post")
+            messages.error(request, _("This user may not modify the post"))
             return HttpResponseRedirect(post.get_absolute_url())
 
         # Posts with a parent are not toplevel
@@ -419,7 +420,7 @@ class EditPost(LoginRequiredMixin, FormView):
         post.lastedit_user = request.user
         post.lastedit_date = datetime.utcnow().replace(tzinfo=utc)
         post.save()
-        messages.success(request, "Post updated")
+        messages.success(request, _("Post updated"))
 
         return HttpResponseRedirect(post.get_absolute_url())
 

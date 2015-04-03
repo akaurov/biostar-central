@@ -1,4 +1,5 @@
 {% extends "starbase.html" %}
+{% load i18n %}
 {% load server_tags %}
 {% load humanize %}
 {% load cache %}
@@ -13,9 +14,11 @@
         <div class="col-md-9">
 
             <div class="alert alert-info text-center">
-                Blog posts collected by the Biostar aggregator.
-                To follow subscribe to the <a class="alert-link" href="{% url "planet-feed" %}">planet
-                feed <i class="fa fa-rss"></i></a>
+                {% url 'planet-feed' as the_url %}
+                {% blocktrans %}Blog posts collected by the Biostar aggregator.
+                To follow subscribe to the <a class="alert-link" href="{{ the_url }}">planet
+                feed <i class="fa fa-rss"></i></a>{% endblocktrans %}
+
             </div>
 
             {% page_bar %}
@@ -30,8 +33,8 @@
 
                     <div>
                         <h4>
-                            written {{ post.creation_date|time_ago }}
-                            by <a href="{{ post.blog.link }}">{{ post.blog.title|safe }}</a>
+                            {% trans "written" %} {{ post.creation_date|time_ago }}
+                            {% trans "by" %} <a href="{{ post.blog.link }}">{{ post.blog.title|safe }}</a>
                         </h4>
                     </div>
 
@@ -46,14 +49,14 @@
         </div>
         <div class="col-md-3">
             {% cache 600 "planet-feeds" %}
-                <h4>Planet Feeds</h4>
+                <h4>{% trans "Planet Feeds" %}</h4>
 
                 {% for blog in blogs %}
                     <div class="blog-feed">
                         <h5><a href="{{ blog.link }}">{{ blog.title }}</a></h5>
 
                         <div>{{ blog.desc|safe }}</div>
-                        <div class="muted">{{ blog.count }} posts, last updated {{ blog.updated_date|time_ago }} </div>
+                        <div class="muted">{% blocktrans with count=blog.count updated_date=blog.updated_date|time_ago%}{{ count }} posts, last updated {{ updated_date }}{% endblocktrans %} </div>
                     </div>
                 {% endfor %}
             {% endcache %}

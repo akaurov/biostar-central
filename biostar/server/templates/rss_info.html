@@ -1,9 +1,10 @@
 {% extends "starbase.html" %}
 {% load server_tags %}
 {% load humanize %}
+{% load i18n %}
 
 {% block page_title %}
-    RSS Feeds
+    {% trans "RSS Feeds" %}
 {% endblock %}
 
 {% block content %}
@@ -12,40 +13,40 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">RSS Feeds</h3>
+                    <h3 class="panel-title">{% trans "RSS Feeds" %}</h3>
                 </div>
                 <div class="panel-body">
 
                     <p>
-                        Standard feeds:
+                        {% trans "Standard feeds:" %}
                     </p>
 
 
                     <ul>
-                        <li><a href="{% url "latest-feed" %}">Latest Posts</a> - latest posts (all posts)</li>
-                        <li><a href="{% url "post-type" "question" %}">New Questions</a> - latest questions</li>
-                        <li><a href="{% url "post-type" "job" %}">New Job postings</a> - latest jobs</li>
-                        <li><a href="{% url "planet-feed" %}">Planet Feed</a> - latest blog entries</li>
+                        <li><a href="{% url "latest-feed" %}">{% blocktrans %}Latest Posts</a> - latest posts (all posts){% endblocktrans %}</li>
+                        <li><a href="{% url "post-type" "question" %}">{% blocktrans %}New Questions</a> - latest questions{% endblocktrans %}</li>
+                        <li><a href="{% url "post-type" "job" %}">{% blocktrans %}New Job postings</a> - latest jobs{% endblocktrans %}</li>
+                        <li><a href="{% url "planet-feed" %}">{% blocktrans %}Planet Feed</a> - latest blog entries{% endblocktrans %}</li>
                     </ul>
 
 
                     <p>
-                        Advanced usage, multiple sources can be added to a feed.
+                        {% trans "Advanced usage, multiple sources can be added to a feed." %}
 
                     <p>
 
                     <ul>
-                        <li><a href="{% url "post-type" "blog+job" %}">Follow posts of different types</a>, posts of certain types:
+                        <li><a href="{% url "post-type" "blog+job" %}">{% blocktrans %}Follow posts of different types</a>, posts of certain types:{% endblocktrans %}
                             <code>/feeds/type/job+blog</code>
                         </li>
-                        <li><a href="{% url "post-feed" "2+4+6" %}">Follow multiple posts</a>, answers and comments attached to the
-                            specified posts: <code>/feeds/post/2+8+10</code>
+                        <li><a href="{% url "post-feed" "2+4+6" %}">{% blocktrans %}Follow multiple posts</a>, answers and comments attached to the
+                            specified posts:{% endblocktrans %} <code>/feeds/post/2+8+10</code>
                         </li>
-                        <li><a href="{% url "tag-feed" 'galaxy+bwa+tutorial' %}">Follow multiple tags</a>, posts that are tagged with one or more
-                            tags:
+                        <li><a href="{% url "tag-feed" 'galaxy+bwa+tutorial' %}">{% blocktrans %}Follow multiple tags</a>, posts that are tagged with one or more
+                            tags:{% endblocktrans %}
                             <code>/feeds/tag/galaxy+bwa+tutorial</code>
                         </li>
-                        <li><a href="{% url "user-feed" "2+4+6" %}">Follow multiple users</a> a feed to posts by these users:
+                        <li><a href="{% url "user-feed" "2+4+6" %}">{% blocktrans %}Follow multiple users</a> a feed to posts by these users:{% endblocktrans %}
                             <code>/feeds/user/2+8+10</code>
                         </li>
                     </ul>

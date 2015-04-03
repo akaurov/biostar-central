@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
-
+from django.utils.translation import ugettext_lazy as _
 
 def hook_social_account_added(**kwargs):
     """
@@ -29,8 +29,8 @@ def ask_to_import_orcid_profile(request):
     Parameters:
     request - a `WSGIRequest`;
     """
-    messages.info(request, "Do you want to import your <i>Biography</i> and <i>Works</i> sections"
-                           " from ORCID? <a href='{}'>Yes</a>".format(reverse('orcid-import')))
+    messages.info(request, _("Do you want to import your <i>Biography</i> and <i>Works</i> sections"
+                           " from ORCID? <a href='{}'>Yes</a>").format(reverse('orcid-import')))
 
 
 @login_required
@@ -47,7 +47,7 @@ def import_bio(request):
     works = extract_from_dict(data, ['orcid-profile', 'orcid-activities', 'orcid-works',
                                      'orcid-work'])
     # Add works (list of papers).
-    txt = '<b>Works</b><br /><ul>'
+    txt = _('<b>Works</b><br /><ul>')
     for work in works[:3]:  # Add only max 3 works.
         title = extract_from_dict(work, ['work-title', 'title', 'value'])
         year = extract_from_dict(work, ['publication-date', 'year', 'value'])
@@ -69,12 +69,12 @@ def import_bio(request):
         bio += '...'
     if bio:
         bio += '<br />'
-    txt = '<b>Biography</b><br />' + bio + txt
+    txt = _('<b>Biography</b><br />') + bio + txt
 
     # Add link to the original ORCID profile.
     profile_url = extract_from_dict(data, ['orcid-profile', 'orcid-identifier', 'uri'])
     if profile_url:
-        txt += "<a href='{}'>Full ORCID profile...</a>".format(profile_url)
+        txt += _("<a href='{}'>Full ORCID profile...</a>").format(profile_url)
 
     user.profile.info = txt
     user.profile.save()

@@ -3,9 +3,10 @@
 {% load humanize %}
 {% load crispy_forms_tags %}
 {% load django_select2_tags %}
+{% load i18n %}
 
 {% block page_title %}
-    Update Post
+    {% trans "Update Post" %}
 {% endblock %}
 
 
@@ -58,7 +59,7 @@
                     <a href="javascript:void(0);" id="add_more">add related</a>
                 </div>
             {% endif %}
-            <div class="buttonHolder"><input type="submit" name="submit" value="Submit" class="btn btn-primary" id="submit-id-submit"> </div>
+            <div class="buttonHolder"><input type="submit" name="submit" value="{% trans 'Submit' %}" class="btn btn-primary" id="submit-id-submit"> </div>
                 </form>
         </div>
     </div>

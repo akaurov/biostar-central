@@ -1,10 +1,12 @@
+{% load i18n %}
+
 <!DOCTYPE html>
 <html>
 <head>
     <title></title>
 </head>
 <body>
-<h3>Internal Error!</h3>
+{% blocktrans %}<h3>Internal Error!</h3>
 <p>
     Sorry about that.
 </p>
@@ -15,6 +17,6 @@
 
 <p>
     If the problem persists please contact the site owners.
-</p>
+</p>{% endblocktrans %}
 </body>
 </html>

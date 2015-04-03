@@ -18,6 +18,7 @@ from biostar.const import OrderedDict
 from biostar import const
 from braces.views import LoginRequiredMixin, JSONResponseMixin
 from django import shortcuts
+from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
 import logging
@@ -39,7 +40,7 @@ def abspath(*args):
 
 class BaseListMixin(ListView):
     "Base class for each mixin"
-    page_title = "Title"
+    page_title = _("Title")
     paginate_by = settings.PAGINATE_BY
 
     def get_title(self):
@@ -83,7 +84,7 @@ def apply_sort(request, query):
     return query
 
 
-LATEST = "latest"
+LATEST = _("latest")
 MYPOSTS, MYTAGS, UNANSWERED, FOLLOWING, BOOKMARKS = "myposts mytags open following bookmarks".split()
 POST_TYPES = dict(jobs=Post.JOB, tools=Post.TOOL, tutorials=Post.TUTORIAL,
                   forum=Post.FORUM, planet=Post.BLOG, pages=Post.PAGE)
@@ -106,7 +107,7 @@ def posts_by_topic(request, topic):
     if topic == MYTAGS:
         # Get the posts that the user wrote.
         messages.success(request,
-                         'Posts matching the <b><i class="fa fa-tag"></i> My Tags</b> setting in your user profile')
+                         _('Posts matching the <b><i class="fa fa-tag"></i> My Tags</b> setting in your user profile'))
         return Post.objects.tag_search(user.profile.my_tags)
 
     if topic == UNANSWERED:
@@ -115,7 +116,7 @@ def posts_by_topic(request, topic):
 
     if topic == FOLLOWING:
         # Get that posts that a user follows.
-        messages.success(request, 'Threads that will produce notifications.')
+        messages.success(request, _('Threads that will produce notifications.'))
         return Post.objects.top_level(user).filter(subs__user=user)
 
     if topic == BOOKMARKS:
@@ -130,7 +131,7 @@ def posts_by_topic(request, topic):
         # Any type of topic.
         if topic:
             messages.info(request,
-                          "Showing: <code>%s</code> &bull; <a href='/'>reset</a>" % topic)
+                          _("Showing: <code>%s</code> &bull; <a href='/'>reset</a>") % topic)
         return Post.objects.tag_search(topic)
 
     # Return latest by default.
@@ -163,16 +164,16 @@ class PostList(BaseListMixin):
 
     def get_title(self):
         if self.topic:
-            return "%s Posts" % self.topic
+            return _("%s Posts") % self.topic
         else:
-            return "Latest Posts"
+            return _("Latest Posts")
 
     def get_queryset(self):
         self.topic = self.kwargs.get("topic", "")
 
         # Catch expired sessions accessing user related information
         if self.topic in AUTH_TOPIC and self.request.user.is_anonymous():
-            messages.warning(self.request, "Session expired")
+            messages.warning(self.request, _("Session expired"))
             self.topic = LATEST
 
         query = posts_by_topic(self.request, self.topic)
@@ -215,7 +216,7 @@ class MessageList(LoginRequiredMixin, ListView):
         people = [m.body.author for m in context[self.context_object_name]]
         people = filter(lambda u: u.id != user.id, people)
         context['topic'] = self.topic
-        context['page_title'] = "Messages"
+        context['page_title'] = _("Messages")
         context['people'] = people
         reset_counts(self.request, self.topic)
         return context
@@ -226,7 +227,7 @@ class TagList(BaseListMixin):
     Produces the list of tags
     """
     model = Tag
-    page_title = "Tags"
+    page_title = _("Tags")
     context_object_name = "tags"
     template_name = "tag_list.html"
     paginate_by = 100
@@ -255,7 +256,7 @@ class VoteList(LoginRequiredMixin, ListView):
         people = [v.author for v in context[self.context_object_name]]
         random.shuffle(people)
         context['topic'] = self.topic
-        context['page_title'] = "Votes"
+        context['page_title'] = _("Votes")
         context['people'] = people
         reset_counts(self.request, self.topic)
         return context
@@ -333,7 +334,7 @@ class UserDetails(BaseDetailMixin):
             page = int(self.request.GET.get("page", 1))
             page_obj = paginator.page(page)
         except Exception, exc:
-            messages.error(self.request, "Invalid page number")
+            messages.error(self.request, _("Invalid page number"))
             page_obj = paginator.page(1)
         context['page_obj'] = page_obj
         context['posts'] = page_obj.object_list
@@ -604,7 +605,7 @@ class FlatPageUpdate(UpdateView):
         logger.info("user %s edited %s" % (user, kwargs))
         if not self.request.user.is_admin:
             logger.error("user %s access denied on %s" % (user, kwargs))
-            messages.error(req, "Only administrators may edit that page")
+            messages.error(req, _("Only administrators may edit that page"))
             return HttpResponseRedirect("/")
 
         return super(FlatPageUpdate, self).post(*args, **kwargs)
@@ -754,7 +755,7 @@ def post_remap_redirect(request, pid):
         post = Post.objects.get(id=nid)
         return shortcuts.redirect(post.get_absolute_url(), permanent=True)
     except Exception, exc:
-        messages.error(request, "Unable to redirect: %s" % exc)
+        messages.error(request, _("Unable to redirect: %s") % exc)
         return shortcuts.redirect("/")
 
 
@@ -762,5 +763,5 @@ def tag_redirect(request, tag):
     try:
         return shortcuts.redirect("/t/%s/" % tag, permanent=True)
     except Exception, exc:
-        messages.error(request, "Unable to redirect: %s" % exc)
+        messages.error(request, _("Unable to redirect: %s") % exc)
         return shortcuts.redirect("/")

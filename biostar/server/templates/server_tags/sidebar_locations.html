@@ -1,9 +1,10 @@
 {% load cache %}
 {% load server_tags %}
+{% load i18n %}
 
 {% cache 120 "recent-locations" %}
-    <div class="head">Recent Locations &bull;
-    <a href="{% url 'user-list' %}">All &raquo;</a></div>
+    <div class="head">{% trans "Recent Locations" %} &bull;
+    <a href="{% url 'user-list' %}">{% trans "All" %} &raquo;</a></div>
     <div class="recent-posts">
         <ul>
             {% for user in users %}

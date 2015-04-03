@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block page_title %}
-    Sign Up.
+    {% trans "Sign Up." %}
 {% endblock %}
 {% block content %}
     <div class="row">
@@ -34,25 +34,25 @@
                 <div class="alert alert-warning">
                     <p>
 
-                        <i class="fa fa-exclamation-circle fa-1x"></i> It seems that there is already an account with the email sent by {{ account.get_provider.name }}.
+                        <i class="fa fa-exclamation-circle fa-1x"></i> {% trans "It seems that there is already an account with the email sent by" %} {{ account.get_provider.name }}.
                     </p>
                     <p>
-                        We can't fully trust this information as some providers do not verify the emails that
-                        they send.
+                        {% trans "We can't fully trust this information as some providers do not verify the emails that
+                        they send." %}
                     </p>
                     <p>
-                        Your mission, should you choose to accept it:
+                        {% trans "Your mission, should you choose to accept it:" %}
                     </p>
                     <p>
                         <ol>
-                            <li>Reset your password below.</li>
-                            <li>Log into the site with the new password.</li>
-                            <li>Connect your social account from your user account page.</li>
+                            <li>{% trans "Reset your password below." %}</li>
+                            <li>{% trans "Log into the site with the new password." %}</li>
+                            <li>{% trans "Connect your social account from your user account page." %}</li>
                         </ol>
                     </p>
 
                     <p>
-                        Once the accounts have been connected the login will work on all devices.
+                       {% trans "Once the accounts have been connected the login will work on all devices." %}
                     </p>
 
                     <form method="POST" action="{% url 'account_reset_password' %}">

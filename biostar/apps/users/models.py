@@ -7,6 +7,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, UserManager
+from django.utils.translation import ugettext_lazy as _
 from django.utils.timezone import utc
 from biostar.apps import util
 import bleach
@@ -53,10 +54,10 @@ class LocalManager(UserManager):
 class User(AbstractBaseUser):
     # Class level constants.
     USER, MODERATOR, ADMIN, BLOG = range(4)
-    TYPE_CHOICES = [(USER, "User"), (MODERATOR, "Moderator"), (ADMIN, "Admin"), (BLOG, "Blog")]
+    TYPE_CHOICES = [(USER, _("User")), (MODERATOR, _("Moderator")), (ADMIN, _("Admin")), (BLOG, _("Blog"))]
 
     NEW_USER, TRUSTED, SUSPENDED, BANNED = range(4)
-    STATUS_CHOICES = ((NEW_USER, 'New User'), (TRUSTED, 'Trusted'), (SUSPENDED, 'Suspended'), (BANNED, 'Banned'))
+    STATUS_CHOICES = ((NEW_USER, _('New User')), (TRUSTED, _('Trusted')), (SUSPENDED, _('Suspended')), (BANNED, _('Banned')))
 
     # Required by Django.
     USERNAME_FIELD = 'email'
@@ -295,8 +296,8 @@ class Profile(models.Model):
 
 class UserCreationForm(forms.ModelForm):
     """A form for creating new users."""
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
+    password1 = forms.CharField(label=_('Password'), widget=forms.PasswordInput)
+    password2 = forms.CharField(label=_('Password confirmation'), widget=forms.PasswordInput)
 
     class Meta:
         model = User
@@ -307,7 +308,7 @@ class UserCreationForm(forms.ModelForm):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
         if password1 and password2 and password1 != password2:
-            raise forms.ValidationError("Passwords don't match")
+            raise forms.ValidationError(_("Passwords don't match"))
         return password2
 
     def save(self, commit=True):

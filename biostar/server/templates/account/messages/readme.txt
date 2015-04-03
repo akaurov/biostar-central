@@ -1,1 +1,1 @@
-Some of these files are empty to override default behaviors.
+{% load i18n %}{% blocktrans %}Some of these files are empty to override default behaviors.{% endblocktrans %}
