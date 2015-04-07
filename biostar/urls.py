@@ -7,7 +7,7 @@ admin.autodiscover()
 
 from django.views.generic import TemplateView
 from biostar.server import views, ajax, search, moderate, api, orcid
-from biostar.apps.posts.views import NewAnswer, NewPost, EditPost, external_post_handler
+from biostar.apps.posts.views import NewAnswer, NewPost, EditPost, external_post_handler, tag_list
 from biostar.apps.users.views import external_logout, external_login, CaptchaView, DigestManager, unsubscribe
 from biostar.apps.planet.views import BlogPostList
 
@@ -121,6 +121,11 @@ urlpatterns = patterns('',
 
      # Local robots.txt.
     url(r'^robots\.txt$', TemplateView.as_view(template_name="robots.txt", content_type='text/plain'), name='robots'),
+
+
+    # JSON tags list
+    url(r'^post/tags/', tag_list, name="tag-list"),
+    url(r'^post/(?P<pk>\d+)/tags/', tag_list, name="tag-list"),
 
     # Url for django-select2 ajax queries(ex. related posts)
     url(r'^select2/', include('django_select2.urls')),

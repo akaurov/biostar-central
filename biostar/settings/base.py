@@ -301,6 +301,7 @@ INSTALLED_APPS = [
     'kombu.transport.django',
     'south',
     'django_select2',
+    'mptt',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'

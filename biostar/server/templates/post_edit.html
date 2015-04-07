@@ -12,7 +12,84 @@
 
 {% block extras %}
     {% import_django_select2_js_css %}
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+    <link href="{{ STATIC_URL }}lib/fancytree/ui.fancytree.min.css" rel="stylesheet">
+    <script src="{{ STATIC_URL }}lib/fancytree/jquery.fancytree.min.js" type="text/javascript"></script>
+    <script src="{{ STATIC_URL }}lib/fancytree/jquery.fancytree.filter.js" type="text/javascript"></script>
+
     <script type="text/javascript">
+        $(function(){
+
+            var tag_pk = $("#tag-tree").data('post-id');
+            if (tag_pk) {
+                var tags_url = '/post/' + tag_pk + '/tags/';
+            } else {
+                var tags_url = '/post/tags/';
+            }
+
+
+            $("#tag-tree").fancytree({
+                extensions: ["filter"],
+                activeVisible: true,
+                checkbox: true,
+                selectMode: 2,
+                source: {
+                    url: tags_url
+                },
+                filter: {
+                    mode: "hide",
+                    autoApply: true
+                  },
+                select: function(event, data) {
+                    // Display list of selected nodes
+                    var selNodes = data.tree.getSelectedNodes();
+                    // convert to title/key array
+                    var selKeys = $.map(selNodes, function(node){
+                         return node.title;
+                      });
+                    $("#selected_tags").text(selKeys.join(", "));
+                },
+                click: function(event, data) {
+                    // We should not toggle, if target was "checkbox", because this
+                    // would result in double-toggle (i.e. no toggle)
+                    if( $.ui.fancytree.getEventTargetType(event) === "title" ){
+                      data.node.toggleSelected();
+                    }
+                },
+                keydown: function(event, data) {
+                    if( event.which === 32 ) {
+                      data.node.toggleSelected();
+                      return false;
+                    }
+                }
+            });
+
+            var tree = $("#tag-tree").fancytree("getTree");
+
+            // Search input
+            $("input[name=search]").keyup(function (e) {
+               var n;
+               match = $(this).val();
+               n = tree.filterNodes(match, false);
+               $("button#btnResetSearch").attr("disabled", false);
+            }).focus();
+
+            // Reset search button
+            $("button#btnResetSearch").click(function(e){
+                $("input[name=search]").val("");
+                tree.clearFilter();
+                e.preventDefault()
+            }).attr("disabled", true);
+
+            $("form").submit(function() {
+                // Render hidden <input> elements for active and selected nodes
+                $("#tag-tree").fancytree("getTree").generateFormElements('tags');
+                return true;
+            });
+
+        });
+
         // Clone related formset form
         function cloneMore(selector, type) {
             var newElement = $(selector).clone(true);
@@ -37,10 +114,10 @@
                 $('.related_posts').hide()
             }
         });
-            $('#add_more').click(function() {
-                cloneMore('.related_post:last', 'related_post');
-            });
-        })
+        $('#add_more').click(function() {
+            cloneMore('.related_post:last', 'related_post');
+        });
+    })
     </script>
 {% endblock %}
 {% block content %}
@@ -50,6 +127,15 @@
             <br>
             <form method="post" class="post-form">
             {% crispy form %}
+
+            <fieldset>
+              <label>{% trans "Filter:" %}</label>
+                <input name="search" placeholder="{% trans 'Filter...' %}">
+                <button id="btnResetSearch">&times;</button>
+                <div data-post-id="{% if post %}{{ post.pk }}{% endif %}" id="tag-tree"></div>
+                <div>{% trans "Selected tags:" %} <span id="selected_tags">{% if post %}{{ post.tag_val }}{% endif %}</span></div>
+            </fieldset>
+
             {% if formset %}
                 <div class="related_posts" style="display:none">
                     {% for form in formset.forms %}

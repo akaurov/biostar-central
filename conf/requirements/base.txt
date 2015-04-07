@@ -20,6 +20,7 @@ chardet
 feedparser
 
 Django-Select2==4.2.2
+django-mptt==0.7.1
 
 #django-secure
 #python-dateutil

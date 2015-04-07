@@ -14,6 +14,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from biostar import const
 from biostar.apps.util import html
 from biostar.apps import util
+from mptt.models import MPTTModel, TreeForeignKey
+from mptt.admin import MPTTModelAdmin
 # HTML sanitization parameters.
 
 logger = logging.getLogger(__name__)
@@ -21,9 +23,12 @@ logger = logging.getLogger(__name__)
 def now():
     return datetime.datetime.utcnow().replace(tzinfo=utc)
 
-class Tag(models.Model):
+class Tag(MPTTModel):
     name = models.TextField(max_length=50, db_index=True)
     count = models.IntegerField(default=0)
+
+    # This will maintain parent/child replationships between tags.
+    parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True)
 
     @staticmethod
     def fixcase(name):
@@ -45,9 +50,8 @@ class Tag(models.Model):
     def __unicode__(self):
         return self.name
 
-class TagAdmin(admin.ModelAdmin):
-    list_display = ('name', 'count')
-    search_fields = ['name']
+class TagAdmin(MPTTModelAdmin):
+    pass
 
 
 admin.site.register(Tag, TagAdmin)
@@ -223,6 +227,9 @@ class Post(models.Model):
         return util.split_tags(self.tag_val)
 
     def add_tags(self, text):
+        """
+        May be this func is unused now. We use new method in post creation/update.
+        """
         text = text.strip()
         if not text:
             return
@@ -233,6 +240,20 @@ class Post(models.Model):
         tags = [Tag.objects.get_or_create(name=name)[0] for name in self.parse_tags()]
         self.tag_set.add(*tags)
         #self.save()
+
+    def add_tags_by_id(self, tag_ids):
+        """
+        Set post tags by tag ids. Doesn't create new tags.
+        """
+        tags = [Tag.objects.get_or_create(pk=tag_id)[0] for tag_id in tag_ids]
+        text = ','.join([tag.name for tag in tags])
+        if not text:
+            return
+        # Sanitize the tag value
+        self.tag_val = bleach.clean(text, tags=[], attributes=[], styles={}, strip=True)
+        # Clear old tags
+        self.tag_set.clear()
+        self.tag_set.add(*tags)
 
     @property
     def as_text(self):
@@ -482,11 +503,12 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'type', 'author')
     fieldsets = (
         (None, {'fields': ('title',)}),
-        ('Attributes', {'fields': ('type', 'status', 'sticky',)}),
+        ('Attributes', {'fields': ('type', 'status', 'sticky', 'tag_val')}),
         ('Content', {'fields': ('content', )}),
     )
     search_fields = ('title', 'author__name')
     inlines = [PostRelationsAdmin, PostRelations2Admin]
+    readonly_fields = ('tag_val',)
 
 admin.site.register(Post, PostAdmin)
 

@@ -1,7 +1,7 @@
 # Create your views here.
 from django.shortcuts import render_to_response
 from django.views.generic import TemplateView, DetailView, ListView, FormView, UpdateView
-from .models import Post, RelatedPosts
+from .models import Post, RelatedPosts, Tag
 from django import forms
 from django.core.urlresolvers import reverse
 from crispy_forms.helper import FormHelper
@@ -22,6 +22,8 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.forms.formsets import formset_factory
 from django.forms.models import inlineformset_factory
+from mptt.templatetags.mptt_tags import cache_tree_children
+from biostar.server.ajax import json_response
 from django_select2 import AutoModelSelect2Field, AutoHeavySelect2Widget, AutoModelSelect2TagField
 import logging
 
@@ -55,7 +57,7 @@ def valid_tag(text):
 
 
 class LongForm(forms.Form):
-    FIELDS = "title content post_type tag_val".split()
+    FIELDS = "title content post_type".split()
 
     POST_CHOICES = [(Post.QUESTION, _("Question")),
                     (Post.JOB, _("Job Ad")),
@@ -72,12 +74,6 @@ class LongForm(forms.Form):
         label=_("Post Type"),
         choices=POST_CHOICES, help_text=_("Select a post type: Question, Forum, Job, Blog"))
 
-    tag_val = forms.CharField(
-        label=_("Post Tags"),
-        required=True, validators=[valid_tag],
-        help_text=_("Choose one or more tags to match the topic. To create a new tag just type it in and press ENTER."),
-    )
-
     content = forms.CharField(widget=forms.Textarea,
                               min_length=80, max_length=15000,
                               label=_("Enter your post below"))
@@ -92,7 +88,6 @@ class LongForm(forms.Form):
                 'Post Form',
                 Field('title'),
                 Field('post_type'),
-                Field('tag_val'),
                 Field('content'),
             ),
         )
@@ -249,10 +244,9 @@ class NewPost(LoginRequiredMixin, FormView):
         title = data('title')
         content = data('content')
         post_type = int(data('post_type'))
-        tag_val = data('tag_val')
 
         post = Post(
-            title=title, content=content, tag_val=tag_val,
+            title=title, content=content,
             author=request.user, type=post_type,
         )
         post.save()
@@ -268,7 +262,8 @@ class NewPost(LoginRequiredMixin, FormView):
                 return render(request, self.template_name, {'form': form, 'formset': formset, 'helper': helper})
 
         # Triggers a new post save.
-        post.add_tags(post.tag_val)
+        tag_ids = request.POST.getlist('tags', [])
+        post.add_tags_by_id(tag_ids)
 
         messages.success(request, _("%s created") % post.get_type_display())
         return HttpResponseRedirect(post.get_absolute_url())
@@ -356,7 +351,7 @@ class EditPost(LoginRequiredMixin, FormView):
         pre = 'class="preformatted"' in post.content
         form_class = LongForm if post.is_toplevel else ShortForm
         form = form_class(initial=initial)
-        return render(request, self.template_name, {'form': form, 'pre': pre, 'formset': formset, 'helper': helper})
+        return render(request, self.template_name, {'form': form, 'pre': pre, 'formset': formset, 'helper': helper, 'post': post})
 
     def post(self, request, *args, **kwargs):
 
@@ -414,7 +409,9 @@ class EditPost(LoginRequiredMixin, FormView):
                 related_post.delete()
 
         if post.is_toplevel:
-            post.add_tags(post.tag_val)
+            tag_ids = request.POST.getlist('tags', [])
+            post.add_tags_by_id(tag_ids)
+
 
         # Update the last editing user.
         post.lastedit_user = request.user
@@ -427,3 +424,53 @@ class EditPost(LoginRequiredMixin, FormView):
     def get_success_url(self):
         return reverse("user_details", kwargs=dict(pk=self.kwargs['pk']))
 
+
+
+def tag_list(request, pk=None):
+    """
+    Ajax view which return list of tags in fancytree json format
+    :param pk: -  add 'selected' attr to this post tags if passed
+    """
+    post_tags = []
+    if pk:
+        post = Post.objects.get(pk=pk)
+        post_tags = [tag for tag in post.tag_set.all()]
+
+    def recursive_node_to_dict(node):
+
+        def is_active(a):
+            """
+            Return true if any child of node is selected .
+            """
+            for x in a:
+                if 'selected' in x:
+                    return True
+                if 'children' in x:
+                    return is_active(x['children'])
+            return False
+
+
+        result = {
+            'key': node.pk,
+            'title': node.name,
+        }
+        if node in post_tags:
+            result['selected'] = True
+
+
+        children = [recursive_node_to_dict(c) for c in node.get_children()]
+        if children:
+            result['children'] = children
+            # TODO: remove double recursion
+            if is_active(result['children']):
+                result['expanded'] = True
+
+        return result
+
+    root_nodes = cache_tree_children(Tag.objects.all())
+    print(root_nodes)
+    dicts = []
+    for n in root_nodes:
+        dicts.append(recursive_node_to_dict(n))
+    print(dicts)
+    return json_response(dicts)
