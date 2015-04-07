@@ -1,3 +1,4 @@
+{% load i18n %}
 {% blocktrans with name=user.name type=post.get_type_display title=post.root.get_title|safe text=post.as_text|safe|truncatewords:150 domain=site.domain post_url=post.get_absolute_url %}{{name}} posted the {{type}}: "{{ title }}":
 
 {{text}}

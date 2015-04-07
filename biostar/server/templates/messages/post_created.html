@@ -1,3 +1,4 @@
+{% load i18n %}
 {% blocktrans with name=user.name domain=site.domain html=post.html|safe post_url=post.get_absolute_url user_url=user.get_absolute_url site_name=site.name post_type=post.get_type_display title=post.root.get_title %}Activity on a post you are following on <a href="http://{{ domain }}">{{ site_name }}</a>
 <p>
     User <a href="http://{{ domain }}{{ user_url }}">{{ user.name }}</a> wrote <a href="http://{{ domain }}{{ post_url }}">{{ post_type }}: {{ title }}</a>:
