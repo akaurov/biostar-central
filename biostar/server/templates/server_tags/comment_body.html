@@ -9,7 +9,7 @@
         <div class="count">{{ post.vote_count|show_nonzero }}</div>
     </div>
 
-   {{ post.html|safe }}
+   {{ post.content|safe }}
 
     {#  Post action line #}
     {% post_actions post user "REPLY" %}
