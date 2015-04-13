@@ -19,13 +19,15 @@ urlpatterns = patterns('',
     # Listing of all tags.
     url(r'^t/$', views.TagList.as_view(), name="tag-list"),
 
+    url(r'^tags/$', views.TagTreeList.as_view(), name="tag-list"),
+
     # Badge view details.
     url(r'^b/(?P<pk>\d+)/$', views.BadgeView.as_view(), name="badge-view"),
 
     # Badge list details.
     url(r'^b/list/$', views.BadgeList.as_view(), name="badge-list"),
 
-    # Topic listing.
+    # Topic listing.(Tags)
     url(r'^t/(?P<topic>.+)/$', views.PostList.as_view(), name="topic-list"),
 
     # The list of users.

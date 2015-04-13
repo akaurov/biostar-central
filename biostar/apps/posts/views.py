@@ -465,12 +465,14 @@ def tag_list(request, pk=None):
             if is_active(result['children']):
                 result['expanded'] = True
 
+        # Add tags link to json object
+        if request.GET.get('href', False):
+            result['href'] = node.get_absolute_url()
+
         return result
 
     root_nodes = cache_tree_children(Tag.objects.all())
-    print(root_nodes)
     dicts = []
     for n in root_nodes:
         dicts.append(recursive_node_to_dict(n))
-    print(dicts)
     return json_response(dicts)

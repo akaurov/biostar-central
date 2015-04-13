@@ -47,11 +47,14 @@ class Tag(MPTTModel):
         if action == 'pre_clear':
             instance.tag_set.all().update(count=F('count') - 1)
 
+    def get_absolute_url(self):
+        return reverse("topic-list", kwargs=dict(topic=self.name))
+
     def __unicode__(self):
         return self.name
 
 class TagAdmin(MPTTModelAdmin):
-    pass
+    search_fields = ['name', ]
 
 
 admin.site.register(Tag, TagAdmin)

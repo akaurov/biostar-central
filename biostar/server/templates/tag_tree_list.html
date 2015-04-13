@@ -1,0 +1,83 @@
+{% extends "starbase.html" %}
+{% load server_tags %}
+{% load humanize %}
+{% load i18n %}
+
+{% block page_title %}
+    {% trans "Tags tree" %}
+{% endblock %}
+
+{% block extras %}
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+    <link href="{{ STATIC_URL }}lib/fancytree/ui.fancytree.min.css" rel="stylesheet">
+    <script src="{{ STATIC_URL }}lib/fancytree/jquery.fancytree.min.js" type="text/javascript"></script>
+    <script src="{{ STATIC_URL }}lib/fancytree/jquery.fancytree.filter.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(function(){
+
+            var tags_url = '/post/tags/?href=1';
+
+            $("#tag-tree").fancytree({
+                extensions: ["filter"],
+                activeVisible: true,
+                checkbox: true,
+                selectMode: 2,
+                source: {
+                    url: tags_url
+                },
+                filter: {
+                    mode: "hide",
+                    autoApply: true
+                  },
+
+                activate: function(event, data) {
+                    var node = data.node;
+                    // Use <a> href and target attributes to load the content:
+                    if( node.data.href ){
+                      // Open target
+                      window.open(node.data.href, '_self');
+                    }
+                  }
+            });
+
+            var tree = $("#tag-tree").fancytree("getTree");
+
+            // Search input
+            $("input[name=search]").keyup(function (e) {
+               var n;
+               match = $(this).val();
+               n = tree.filterNodes(match, false);
+               $("button#btnResetSearch").attr("disabled", false);
+            }).focus();
+
+            // Reset search button
+            $("button#btnResetSearch").click(function(e){
+                $("input[name=search]").val("");
+                tree.clearFilter();
+                e.preventDefault()
+            }).attr("disabled", true);
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div id="tag-list">
+                <div class="col-xs-6  col-xs-offset-3 col-md-6 col-md-offset-3">
+                    <label>{% trans "Filter:" %}</label>
+                    <input name="search" placeholder="{% trans 'Filter...' %}">
+                    <button id="btnResetSearch">&times;</button>
+                    <div data-post-id="{% if post %}{{ post.pk }}{% endif %}" id="tag-tree"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+
+        </div>
+    </div>
+
+{% endblock %}

@@ -237,6 +237,15 @@ class TagList(BaseListMixin):
         return objs
 
 
+class TagTreeList(TemplateView):
+    """
+    Produces the tree list of tags
+    """
+    model = Tag
+    page_title = _("Tags")
+    template_name = "tag_tree_list.html"
+
+
 class VoteList(LoginRequiredMixin, ListView):
     """
     Produces the list of votes
