@@ -1,0 +1,17 @@
+CKEDITOR.plugins.setLang('geogebra', 'en', {
+	button : 'Embed GeoGebra object',
+	title : 'Embed GeoGebra object',
+	geoEmbed : 'Paste Embed Code Here',
+	txtWidth : 'Width',
+	txtHeight : 'Height',
+	showGeoToolbar : 'Show GeoGebra toolbar',
+	noCode : 'You must input an embed code or URL',
+	invalidEmbed : 'The embed code you\'ve entered doesn\'t appear to be valid',
+	invalidUrl : 'The URL you\'ve entered doesn\'t appear to be valid',
+	or : 'or',
+	noWidth : 'You must inform the width',
+	invalidWidth : 'Inform a valid width',
+	noHeight : 'You must inform the height',
+	invalidHeight : 'Inform a valid height',
+	invalidTime : 'Inform a valid start time',
+});
