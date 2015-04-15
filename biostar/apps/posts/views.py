@@ -361,7 +361,8 @@ class EditPost(LoginRequiredMixin, FormView):
 
         # For historical reasons we had posts with iframes
         # these cannot be edited because the content would be lost in the front end
-        if "<iframe" in post.content:
+        # allow iframes from youtube and geogebra
+        if "<iframe" in post.content and not ('tube.geogebra.org' in post.content or 'youtube.com' in post.content):
             messages.error(request, _("This post is not editable because of an iframe! Contact if you must edit it"))
             return HttpResponseRedirect(post.get_absolute_url())
 
