@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-07 10:55-0500\n"
+"POT-Creation-Date: 2015-04-23 02:45-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -335,79 +335,79 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
-#: apps/posts/models.py:143 apps/posts/views.py:62
+#: apps/posts/models.py:146 apps/posts/views.py:62
 msgid "Question"
 msgstr ""
 
-#: apps/posts/models.py:143
+#: apps/posts/models.py:146
 msgid "Answer"
 msgstr ""
 
-#: apps/posts/models.py:143
+#: apps/posts/models.py:146
 msgid "Comment"
 msgstr ""
 
-#: apps/posts/models.py:144
+#: apps/posts/models.py:147
 msgid "Job"
 msgstr ""
 
-#: apps/posts/models.py:144 apps/posts/views.py:65
+#: apps/posts/models.py:147 apps/posts/views.py:65
 msgid "Forum"
 msgstr ""
 
-#: apps/posts/models.py:144 apps/posts/views.py:64
+#: apps/posts/models.py:147 apps/posts/views.py:64
 msgid "Tutorial"
 msgstr ""
 
-#: apps/posts/models.py:145
+#: apps/posts/models.py:148
 msgid "Data"
 msgstr ""
 
-#: apps/posts/models.py:145 apps/posts/views.py:66
+#: apps/posts/models.py:148 apps/posts/views.py:66
 msgid "Page"
 msgstr ""
 
-#: apps/posts/models.py:145 apps/posts/views.py:64
+#: apps/posts/models.py:148 apps/posts/views.py:64
 msgid "Tool"
 msgstr ""
 
-#: apps/posts/models.py:145 apps/posts/views.py:65
+#: apps/posts/models.py:148 apps/posts/views.py:65
 msgid "News"
 msgstr ""
 
-#: apps/posts/models.py:146 apps/posts/views.py:66 apps/users/models.py:57
+#: apps/posts/models.py:149 apps/posts/views.py:66 apps/users/models.py:57
 msgid "Blog"
 msgstr ""
 
-#: apps/posts/models.py:146
+#: apps/posts/models.py:149
 msgid "Bulletin Board"
 msgstr ""
 
-#: apps/posts/models.py:423
+#: apps/posts/models.py:432
 msgid "Easier"
 msgstr ""
 
-#: apps/posts/models.py:423
+#: apps/posts/models.py:432
 msgid "Harder"
 msgstr ""
 
-#: apps/posts/models.py:424
+#: apps/posts/models.py:433
 msgid "Common"
 msgstr ""
 
-#: apps/posts/models.py:424
+#: apps/posts/models.py:433
 msgid "Special"
 msgstr ""
 
-#: apps/posts/models.py:561 apps/users/models.py:57
+#: apps/posts/models.py:570 apps/users/models.py:57
 msgid "User"
 msgstr ""
 
-#: apps/posts/models.py:562 apps/posts/views.py:109
+#: apps/posts/models.py:571 apps/posts/views.py:109
 msgid "Post"
 msgstr ""
 
-#: apps/posts/models.py:564
+#: apps/posts/models.py:573
 msgid "Date"
 msgstr ""
 
@@ -484,16 +484,16 @@ msgstr ""
 msgid "The post does not exist. Perhaps it was deleted"
 msgstr ""
 
-#: apps/posts/views.py:345 apps/posts/views.py:370
+#: apps/posts/views.py:345 apps/posts/views.py:371
 msgid "This user may not modify the post"
 msgstr ""
 
-#: apps/posts/views.py:365
+#: apps/posts/views.py:366
 msgid ""
 "This post is not editable because of an iframe! Contact if you must edit it"
 msgstr ""
 
-#: apps/posts/views.py:420
+#: apps/posts/views.py:421
 msgid "Post updated"
 msgstr ""
 
@@ -978,8 +978,10 @@ msgstr ""
 msgid "<a href='{}'>Full ORCID profile...</a>"
 msgstr ""
 
-#: server/search.py:57 server/templates/post_details.html:87
-#: server/templates/starbase.html:105 server/templates/search/search.html:16
+#: server/search.py:58 server/search.py:84
+#: server/templates/post_details.html:87 server/templates/starbase.html:105
+#: server/templates/search/search.html:16
+#: server/templates/search/search_graph.html:16
 msgid "Search"
 msgstr ""
 
@@ -1023,23 +1025,23 @@ msgstr ""
 msgid "Messages"
 msgstr ""
 
-#: server/views.py:230 server/templates/starbase.html:107
+#: server/views.py:230 server/views.py:245 server/templates/starbase.html:107
 msgid "Tags"
 msgstr ""
 
-#: server/views.py:259 server/templates/server_tags/nav_bar.html:134
+#: server/views.py:268 server/templates/server_tags/nav_bar.html:134
 msgid "Votes"
 msgstr ""
 
-#: server/views.py:337
+#: server/views.py:346
 msgid "Invalid page number"
 msgstr ""
 
-#: server/views.py:608
+#: server/views.py:617
 msgid "Only administrators may edit that page"
 msgstr ""
 
-#: server/views.py:758 server/views.py:766
+#: server/views.py:767 server/views.py:775
 #, python-format
 msgid "Unable to redirect: %s"
 msgstr ""
@@ -1142,6 +1144,13 @@ msgid ""
 "                                top!"
 msgstr ""
 
+#: server/templates/post_details.html:66
+msgid ""
+" \"Use the comments\n"
+"                                to discuss an answer, ask for "
+"clarifications, request more details, etc.\""
+msgstr ""
+
 #: server/templates/post_details.html:78
 msgid "Add Answer"
 msgstr ""
@@ -1174,11 +1183,11 @@ msgstr ""
 msgid "Update Post"
 msgstr ""
 
-#: server/templates/post_edit.html:132
+#: server/templates/post_edit.html:132 server/templates/tag_tree_list.html:71
 msgid "Filter:"
 msgstr ""
 
-#: server/templates/post_edit.html:133
+#: server/templates/post_edit.html:133 server/templates/tag_tree_list.html:72
 msgid "Filter..."
 msgstr ""
 
@@ -1302,6 +1311,10 @@ msgstr ""
 #: server/templates/starbase.html:155
 #, python-format
 msgid "Traffic: %(TRAFFIC)s users visited in the last hour"
+msgstr ""
+
+#: server/templates/tag_tree_list.html:7
+msgid "Tags tree"
 msgstr ""
 
 #: server/templates/test-banner.html:6
@@ -1914,16 +1927,19 @@ msgid "%(count)s posts, last updated %(updated_date)s"
 msgstr ""
 
 #: server/templates/search/search.html:9
+#: server/templates/search/search_graph.html:9
 msgid ""
 " Classic search. Type your query and press enter. Go to the main page\n"
 "            for dynamic search."
 msgstr ""
 
 #: server/templates/search/search.html:19
+#: server/templates/search/search_graph.html:19
 msgid "Search!"
 msgstr "Поиск!"
 
 #: server/templates/search/search.html:45
+#: server/templates/search/search_graph.html:45
 msgid "No results found."
 msgstr ""
 
