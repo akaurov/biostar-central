@@ -2,10 +2,10 @@
 set -ue
 
 # This is required so that the default configuration file works.
-source /home/www/sites/biostar-central/live/deploy.env
+source /var/www/tetrad/live/deploy.env
 
 # Location of the log file
-LOGFILE=/home/www/sites/biostar-central/live/logs/%n-%i.log
+LOGFILE=/var/www/tetrad/live/logs/%n-%i.log
 
 # The concurrency level
 NUM_WORKERS=2
@@ -20,7 +20,7 @@ APP="biostar"
 LOGLEVEL=info
 
 # The gunicorn instance to run.
-CELERY="/home/www/.virtualenvs/biostar/bin/celery"
+CELERY="/var/envs/tetrad/bin/celery"
 
 echo "starting celery worker with DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE"
 

@@ -2,24 +2,24 @@
 set -ue
 
 # This is required so that the default configuration file works.
-source /home/www/sites/biostar-central/live/deploy.env
+source /var/www/tetrad/live/deploy.env
 
 # Setting the various access logs.
-ACCESS_LOG=/home/www/sites/biostar-central/live/logs/gunicorn-access.log
-ERROR_LOG=/home/www/sites/biostar-central/live/logs/gunicorn-error.log
+ACCESS_LOG=/var/www/tetrad/live/logs/gunicorn-access.log
+ERROR_LOG=/var/www/tetrad/live/logs/gunicorn-error.log
 
 # The user and group the unicorn process will run as.
 NUM_WORKERS=3
 
 # Where to bind.
-BIND="unix:/tmp/biostar.sock"
+BIND="unix:/tmp/tetrad.sock"
 #BIND="localhost:8080"
 
 # The WSGI module that starts the process.
 DJANGO_WSGI_MODULE='biostar.wsgi'
 
 # The gunicorn instance to run.
-GUNICORN="/home/www/.virtualenvs/biostar/bin/gunicorn"
+GUNICORN="/var/envs/tetrad/bin/gunicorn"
 
 # How many requests to serve.
 MAX_REQUESTS=1000
